@@ -1,0 +1,45 @@
+
+
+
+nav {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+
+    a {
+        text-decoration: none;
+        color: red;
+        transition: color 0.35s ease;
+
+        &:hover{            
+            color: black;
+            cursor: pointer;
+        }
+    }
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    gap: 30px;
+    height: 40px;
+}
+
+.menu-toggle-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle-button {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+
+    nav ul {
+        display: none;
+    }
+}
