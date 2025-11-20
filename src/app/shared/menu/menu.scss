@@ -1,10 +1,10 @@
-@import '../../../styles.scss';
+@use '../../../styles.scss' as styles;
 
 .mdc-list-item:focus::before {
     opacity: 0 !important;
 }
 
 .active-list-item{
-    background-color: $primary-color;
+    background-color: styles.$primary-color;
     font-weight: bold;
 }
