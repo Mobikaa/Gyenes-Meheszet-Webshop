@@ -1,5 +1,8 @@
+@import '../styles.scss';
 
-
+mat-sidenav-content mat-toolbar {
+    background-color: $primary-color;
+}
 
 nav {
     display: flex;
@@ -8,7 +11,7 @@ nav {
 
     a {
         text-decoration: none;
-        color: red;
+        color: $text-on-primary-color;
         transition: color 0.35s ease;
 
         &:hover{            

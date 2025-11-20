@@ -6,10 +6,18 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+$bg-color: #FFF8E5;
+$primary-color: #EAB75A;
+$secondary-color: #A86B24;
+$card-surface-color: #FFF2D2;
+$text-on-primary-color: #3A2A0A;
+$text-on-bg-color: #3C3C3C;
+$accent-color: #FFD667;
+
 html {
   @include mat.theme((
     color: (
-      primary: mat.$azure-palette,
+      primary: mat.$yellow-palette,
       tertiary: mat.$blue-palette,
     ),
     typography: Roboto,
