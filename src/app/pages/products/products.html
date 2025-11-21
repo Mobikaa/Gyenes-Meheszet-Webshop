@@ -1,1 +1,26 @@
-<p>products works!</p>
+<div class="page-container">
+    <h1>Termékeink</h1>
+    <div class="container">
+        @for(product of products; track product.id){
+        <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+                <mat-card-title>{{product.name}}</mat-card-title>
+                <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image [src]= "product.picture"
+                [alt]="product.name">
+            <mat-card-content>
+                <p>
+                    {{product.description}}
+                </p>
+                <p class = "price">
+                    {{product.price | numberSpacer}} Ft
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button matButton = "filled">Kosárba</button>
+            </mat-card-actions>
+        </mat-card>
+        }
+    </div>
+</div>
