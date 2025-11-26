@@ -1,0 +1,33 @@
+@use '../../../styles.scss' as styles;
+
+.page-container {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+
+    border: 1px solid styles.$secondary-color;
+    border-radius: 25px;
+    padding: 30px 20px;
+}
+
+.form-item {
+    width: 100%;
+    max-width: 350px;
+
+    mat-label{
+        color: styles.$text-on-bg-color;
+    }
+}
+
+.form-button {
+    width: 80%;
+    background-color: styles.$secondary-color !important;
+}
