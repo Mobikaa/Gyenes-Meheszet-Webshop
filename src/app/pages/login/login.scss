@@ -15,14 +15,14 @@
 
     border: 1px solid styles.$secondary-color;
     border-radius: 25px;
-    padding: 30px 20px;
+    padding: 30px 20px 0px 20px;
 }
 
 .form-item {
     width: 100%;
     max-width: 350px;
 
-    mat-label{
+    mat-label {
         color: styles.$text-on-bg-color;
     }
 }
@@ -30,4 +30,9 @@
 .form-button {
     width: 80%;
     background-color: styles.$secondary-color !important;
+}
+
+.signup-navigation {
+    margin-top: 30px;
+    color: styles.$text-on-bg-color;
 }
