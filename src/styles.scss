@@ -6,13 +6,20 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
-$bg-color: #FFF8E5;
-$primary-color: #EAB75A;
-$secondary-color: #A86B24;
-$card-surface-color: #FFF2D2;
-$text-on-primary-color: #3A2A0A;
-$text-on-bg-color: #3C3C3C;
-$accent-color: #FFD667;
+$bg-color: #F9FAFB;
+$primary-color: #F59E0B;
+$hover-bg-color: #D97706;
+$link-hover-color: #B45309;
+$light-hilight-color: #FEF3C7;
+$card-surface-color: #FFFBEB;
+$border-color: #E5E7EB;
+$text-color: #F3F4F6;
+$secondary-text-color: #4B5563;
+$body-text-color: #374151;
+$label-color:  #9CA3AF;
+$footer-bg-color: #111827;
+$error-color: #DC2626;
+$succes-color: #15803D;
 
 html {
   @include mat.theme((

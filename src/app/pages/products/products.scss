@@ -1,21 +1,33 @@
 @use '../../../styles.scss' as styles;
-@use '@angular/material' as mat;
 
 .page-container {
     background-color: styles.$bg-color;
     max-width: 100%;
 }
 
-h1 {
-    text-align: center;
+.header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: styles.$text-color;
+
+
+    margin: 0;
+    height: 150px;
+    background-color: styles.$primary-color;
+
+    p {
+        color: styles.$body-text-color;
+    }
 }
+
+
 
 .content {
 
     max-width: 1280px;
     margin: 10px auto;
     padding: 0 1.5rem;
-    color: styles.$text-on-bg-color;
 
     display: flex;
     flex-flow: row wrap;
@@ -33,16 +45,21 @@ h1 {
             z-index: 2;
         }
 
+        mat-card-content {
+            color: styles.$body-text-color;
+        }
+
         .price {
             font-weight: bold;
             font-size: large;
+            color: black;
         }
 
         button {
             width: 100%;
             margin: 20px;
             border-radius: 10px;
-            background-color: styles.$secondary-color !important;
+            background-color: styles.$primary-color !important;
         }
 
         @media (max-width: 1024px) {

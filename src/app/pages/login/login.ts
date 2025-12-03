@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatInputModule, MatLabel, MatFormField } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -10,6 +11,7 @@ import { RouterLink } from "@angular/router";
     MatLabel,
     MatFormField,
     MatButtonModule,
+    MatIconModule,
     RouterLink
 ],
   templateUrl: './login.html',

@@ -3,8 +3,26 @@
 .page-container {
     min-height: calc(100vh - 64px);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: styles.$bg-color;
+}
+
+mat-icon {
+    padding: 15px;
+    border-radius: 100%;
+    background-color: styles.$primary-color;
+    color: styles.$text-color;
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+.subtext {
+    color: styles.$secondary-text-color;
+    margin-top: 0;
 }
 
 .form-content {
@@ -13,26 +31,37 @@
     align-items: center;
     width: 300px;
 
-    border: 1px solid styles.$secondary-color;
-    border-radius: 25px;
+    background-color: #fff;
+
+    border: 1px solid styles.$border-color;
+    border-radius: 10px;
     padding: 30px 20px 0px 20px;
+    margin-top: 20px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .form-item {
     width: 100%;
     max-width: 350px;
+    color: styles.$primary-color !important;
 
     mat-label {
-        color: styles.$text-on-bg-color;
+        color: styles.$body-text-color;
     }
 }
 
 .form-button {
     width: 80%;
-    background-color: styles.$secondary-color !important;
+    background-color: styles.$primary-color !important;
+    border-radius: 5px;
 }
 
-.signup-navigation {
+.login-navigation {
     margin-top: 30px;
-    color: styles.$text-on-bg-color;
+    color: styles.$body-text-color;
+
+    a {
+        text-decoration: none;
+        color: styles.$link-hover-color;
+    }
 }

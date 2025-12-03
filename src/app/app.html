@@ -7,17 +7,20 @@
       <button mat-button (click)="onToggleSidenav(sidenav)" class="menu-toggle-button" color = "primary">
         <mat-icon>menu</mat-icon>
       </button>
-      <div> Gyenes Méhészet </div>
-      <nav>
-        <ul>
-          <li routerLinkActive="active-list-item"><a routerLink="/home">Főoldal</a></li>
-          <li routerLinkActive="active-list-item"><a routerLink="/products">Termékek</a></li>
-          <li routerLinkActive="active-list-item"><a routerLink="/cart">Kosár</a></li>
-          <li routerLinkActive="active-list-item"><a routerLink="/login">Bejelentkezés</a></li>
-          <li routerLinkActive="active-list-item"><a routerLink="/signup">Regisztráció</a></li>
-          <li routerLinkActive="active-list-item" class="profile"><a routerLink="/profile">Profil</a></li>
-        </ul>
-      </nav>
+      <div class="nav-div">
+        <div> Gyenes Méhészet </div>
+        <nav>
+          <ul>
+            <li routerLinkActive="active-list-item"><a routerLink="/home">Főoldal</a></li>
+            <li routerLinkActive="active-list-item"><a routerLink="/products">Termékek</a></li>
+            <li routerLinkActive="active-list-item"><a routerLink="/cart">Kosár</a></li>
+            <li routerLinkActive="active-list-item"><a routerLink="/login">Bejelentkezés</a></li>
+            <li routerLinkActive="active-list-item"><a routerLink="/signup">Regisztráció</a></li>
+            <li routerLinkActive="active-list-item"><a routerLink="/profile">Profil</a></li>
+            <li routerLinkActive="active-list-item"><a routerLink="/contact">Kapcsolat</a></li>
+          </ul>
+        </nav>
+      </div>
     </mat-toolbar>
     <div class="container">
       <router-outlet />
