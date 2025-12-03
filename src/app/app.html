@@ -4,24 +4,35 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
-        <div class="nav-div">
+      <div class="nav-div">
         <button mat-button (click)="onToggleSidenav(sidenav)" class="menu-toggle-button" color="primary">
           <mat-icon>menu</mat-icon>
         </button>
-        <div> Gyenes Méhészet </div>
         <nav>
-          <ul>
-            <li><a routerLinkActive="active-list-item" routerLink="/home">Főoldal</a></li>
-            <li><a routerLinkActive="active-list-item" routerLink="/products">Termékek</a></li>
-            <li><a routerLinkActive="active-list-item" routerLink="/cart">Kosár</a></li>
-            <li><a routerLinkActive="active-list-item" routerLink="/login">Bejelentkezés</a></li>
-            <li><a routerLinkActive="active-list-item" routerLink="/signup">Regisztráció</a></li>
-            <li><a routerLinkActive="active-list-item" routerLink="/profile">Profil</a></li>
-            <li><a routerLinkActive="active-list-item" routerLink="/contact">Kapcsolat</a></li>
-          </ul>
+          <div class="logo">
+            <a routerLink="/home">Gyenes méhészet</a>
+          </div>
+
+          <div class="nav-middle">
+            <a routerLinkActive="active-list-item" routerLink="/home">Főoldal</a>
+            <a routerLinkActive="active-list-item" routerLink="/products">Termékek</a>
+            <a routerLinkActive="active-list-item" routerLink="/login">Bejelentkezés</a>
+            <a routerLinkActive="active-list-item" routerLink="/signup">Regisztráció</a>
+            <a routerLinkActive="active-list-item" routerLink="/contact">Kapcsolat</a>
+          </div>
+
+          <div class="nav-icons">
+            <a routerLinkActive="active-list-item" routerLink="/cart">
+              <mat-icon aria-hidden="false" aria-label="Kosár" fontIcon="shopping_cart"></mat-icon>
+            </a>
+            <a routerLinkActive="active-list-item" routerLink="/profile">
+              <mat-icon aria-hidden="false" aria-label="Profil" fontIcon="person"></mat-icon>
+            </a>
+          </div>
         </nav>
+
       </div>
-      </mat-toolbar>
+    </mat-toolbar>
     <div class="container">
       <router-outlet />
     </div>
