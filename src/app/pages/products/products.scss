@@ -41,7 +41,7 @@
 
         &:hover {
             transform: scale(1.005);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
             z-index: 2;
         }
 
@@ -60,6 +60,10 @@
             margin: 20px;
             border-radius: 10px;
             background-color: styles.$primary-color !important;
+
+            &:hover{
+                background-color: styles.$hover-bg-color !important;
+            }
         }
 
         @media (max-width: 1024px) {

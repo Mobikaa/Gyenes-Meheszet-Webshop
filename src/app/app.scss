@@ -48,10 +48,10 @@ ul {
 }
 
 .active-list-item{
-    color: red !important;
+    border-bottom: 2px solid styles.$text-color;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .menu-toggle-button {
         display: flex;
         flex-direction: column;
