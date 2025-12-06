@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
   imports: [
     MatButtonModule,
     RouterLink
-  ],
+],
   templateUrl: './notfound.html',
   styleUrl: './notfound.scss',
 })
