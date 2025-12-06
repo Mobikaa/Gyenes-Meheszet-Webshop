@@ -12,38 +12,61 @@
         </button>
     </div>
 
-    <div class="featured-products">
-        <h1>Kiemelt kínálatunk</h1>
-        <p>Fedezze fel a kézzel válogatott kiemelt kínálatunkat</p>
-        <div class="featured-cards">
-            @for(product of featuredList(1,3,6,7); track product.id){
-            <mat-card class="example-card" appearance="outlined">
-                <mat-card-header>
-                    <img mat-card-image [src]="product.picture" [alt]="product.name">
-                    <mat-card-title>{{product.name}}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>
-                        {{product.description}}
-                    </p>
-                    <p class="price">
-                        {{product.price | numberSpacer}} Ft
-                    </p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button matButton="filled">Kosárba</button>
-                </mat-card-actions>
-                <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
-            </mat-card>
-            }
+    <div class="container">
+        <div class="featured-products">
+            <h1>Kiemelt kínálatunk</h1>
+            <p>Fedezze fel a kézzel válogatott kiemelt kínálatunkat</p>
+            <div class="featured-cards">
+                @for(product of featuredList(1,3,6,7); track product.id){
+                <mat-card class="example-card" appearance="outlined">
+                    <mat-card-header>
+                        <img mat-card-image [src]="product.picture" [alt]="product.name">
+                        <mat-card-title>{{product.name}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>
+                            {{product.description}}
+                        </p>
+                        <p class="price">
+                            {{product.price | numberSpacer}} Ft
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button matButton="filled">Kosárba</button>
+                    </mat-card-actions>
+                    <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+                </mat-card>
+                }
+            </div>
         </div>
-    </div>
-
-    <div class="all-products">
-        <a [routerLink]="['/products']">
-            Összes termék
-            <mat-icon class="icon-right" fontIcon="arrow_forward"></mat-icon>
-        </a>
+        <div class="all-products">
+            <a [routerLink]="['/products']">
+                Összes termék
+                <mat-icon class="icon-right" fontIcon="arrow_forward"></mat-icon>
+            </a>
+        </div>
+        <div class="contact">
+            <div class="left-text">
+                <h1>Miért válassz minket?</h1>
+                <p>
+                    Minden termékünk gondos odafigyeléssel, hagyományos eljárásokkal készül.
+                </p>
+                <p>
+                    Méheinket vegyszermentes területeken tartjuk, így termékeink tiszták, adalékoktól mentesek,
+                    így 100%-ban természetes alapanyagokból dolgozunk.
+                </p>
+                <p>
+                    Fontos számunkra a méhek védelme és a természet megőrzése – felelősen, környezettudatosan dolgozunk.
+                </p>
+                <p>
+                    Több évtizedes tapasztalattal és számos elégedett vásárlóval büszkélkedhetünk.
+                </p>
+                <button matButton="filled" [routerLink]="['/contact']"> Kapcsolatfelvétel </button>
+            </div>
+            <div class="right-img">
+                <img src="" alt="">
+            </div>
+        </div>
     </div>
 
 </div>

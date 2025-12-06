@@ -24,6 +24,10 @@
             order: 2;
             margin-left: 6px;
         }
+
+        &:hover{
+            background-color: styles.$hover-bg-color;
+        }
     }
 
     @media (max-width: 1000px) {
@@ -34,6 +38,10 @@
 }
 
 .featured-products {
+    max-width: 1280px;
+    margin: 10px auto;
+    padding: 0 1.5rem;
+
     text-align: center;
     padding-top: 80px;
 
@@ -47,8 +55,9 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
+
     margin-top: 30px;
+
     a {
         display: flex;
         align-items: center;
@@ -56,6 +65,7 @@
         color: styles.$primary-color;
 
         gap: 5px;
+
         &:hover {
             color: styles.$link-hover-color;
         }
@@ -63,10 +73,6 @@
 }
 
 .featured-cards {
-    max-width: 1280px;
-    margin: 10px auto;
-    padding: 0 1.5rem;
-
     display: flex;
     flex-flow: row wrap;
     gap: 1rem;
@@ -111,6 +117,47 @@
 
         @media (max-width: 600px) {
             flex: 0 1 calc(100% - 1rem);
+        }
+    }
+}
+
+.contact {
+    height: 300px;
+    margin-top: 80px;
+    padding: 50px 20%;
+    background-color: styles.$card-surface-color;
+
+    display: flex;
+    flex-direction: row;
+
+    .left-text,
+    .right-img {
+        flex: 1;
+    }
+
+    p {
+        color: styles.$secondary-text-color;
+    }
+
+    button{
+        background-color: styles.$primary-color;
+        border-radius: 10px;
+
+        &:hover{
+            background-color: styles.$hover-bg-color;
+        }
+    }
+
+    @media (max-width: 1000px) {
+        flex-direction: column;
+
+        .left-text{
+            width: 100%;
+            flex: none;
+        }
+
+        .right-img {
+            display: none;
         }
     }
 }
