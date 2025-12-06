@@ -24,7 +24,6 @@
 
 
 .content {
-
     max-width: 1280px;
     margin: 10px auto;
     padding: 0 1.5rem;
@@ -34,7 +33,7 @@
     gap: 1rem;
 
     mat-card {
-        flex: 0 1 calc(33.333% - 1rem);
+        flex: 0 1 calc(25% - 1rem);
 
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         background-color: styles.$card-surface-color;

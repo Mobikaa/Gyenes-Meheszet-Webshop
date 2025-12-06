@@ -1,0 +1,116 @@
+@use '../../../styles.scss' as styles;
+
+.banner {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    color: styles.$text-color;
+
+    margin: 0;
+    height: 400px;
+    padding: 0 25%;
+    background-color: black;
+    line-height: 1.2;
+
+    button {
+        background-color: styles.$primary-color;
+        border-radius: 10px;
+        max-width: 200px;
+        height: 65px;
+        margin-top: 20px;
+
+        mat-icon {
+            order: 2;
+            margin-left: 6px;
+        }
+    }
+
+    @media (max-width: 1000px) {
+        padding: 0;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+.featured-products {
+    text-align: center;
+    padding-top: 80px;
+
+
+    .lower-text {
+        color: styles.$secondary-text-color
+    }
+}
+
+.all-products {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    margin-top: 30px;
+    a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: styles.$primary-color;
+
+        gap: 5px;
+        &:hover {
+            color: styles.$link-hover-color;
+        }
+    }
+}
+
+.featured-cards {
+    max-width: 1280px;
+    margin: 10px auto;
+    padding: 0 1.5rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+
+    mat-card {
+        margin-top: 40px;
+
+        flex: 0 1 calc(25% - 1rem);
+
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background-color: styles.$card-surface-color;
+
+        &:hover {
+            transform: scale(1.005);
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        mat-card-content {
+            color: styles.$body-text-color;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: large;
+            color: black;
+        }
+
+        button {
+            width: 100%;
+            margin: 20px;
+            border-radius: 10px;
+            background-color: styles.$primary-color !important;
+
+            &:hover {
+                background-color: styles.$hover-bg-color !important;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            flex: 0 1 calc(50% - 1rem);
+        }
+
+        @media (max-width: 600px) {
+            flex: 0 1 calc(100% - 1rem);
+        }
+    }
+}

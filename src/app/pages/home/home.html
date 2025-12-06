@@ -1,1 +1,49 @@
-<p>home works!</p>
+<div class="page-container">
+    <div class="banner">
+        <h1>Házi természetes mézek és méhészeti termékek</h1>
+        <p class="lower-text">
+            Fedezze fel a prémium minőségű méhészeti cikkeinket és természetes
+            mézkínálatunkat egyenesen a saját méhészetünkből.
+        </p>
+
+        <button matButton="filled" [routerLink]="['/products']">
+            Kínálat megtekintése
+            <mat-icon class="icon-right" fontIcon="arrow_forward"></mat-icon>
+        </button>
+    </div>
+
+    <div class="featured-products">
+        <h1>Kiemelt kínálatunk</h1>
+        <p>Fedezze fel a kézzel válogatott kiemelt kínálatunkat</p>
+        <div class="featured-cards">
+            @for(product of featuredList(1,3,6,7); track product.id){
+            <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <img mat-card-image [src]="product.picture" [alt]="product.name">
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{product.description}}
+                    </p>
+                    <p class="price">
+                        {{product.price | numberSpacer}} Ft
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button matButton="filled">Kosárba</button>
+                </mat-card-actions>
+                <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+            </mat-card>
+            }
+        </div>
+    </div>
+
+    <div class="all-products">
+        <a [routerLink]="['/products']">
+            Összes termék
+            <mat-icon class="icon-right" fontIcon="arrow_forward"></mat-icon>
+        </a>
+    </div>
+
+</div>
