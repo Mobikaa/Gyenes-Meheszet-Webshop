@@ -1,0 +1,65 @@
+@use '../../../styles.scss' as styles;
+
+.header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: styles.$text-color;
+
+    margin: 0;
+    height: 150px;
+    background-color: styles.$primary-color;
+
+    p {
+        color: styles.$text-color;
+    }
+}
+
+.content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+
+.section {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+
+    line-height: 0.5;
+
+    .text-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title {
+        font-size: large;
+        margin: 0;
+        padding-top: 2px;
+    }
+
+    .lower-text {
+        color: styles.$secondary-text-color;
+    }
+
+    mat-icon {
+        margin: 0 10px 5px 0;
+        font-size: 24px;
+        background-color: styles.$light-hilight-color;
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px;
+    }
+}
