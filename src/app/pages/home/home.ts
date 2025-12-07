@@ -4,8 +4,7 @@ import { ProductList } from '../../shared/constants/products_examples';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from "@angular/material/icon";
 import { RouterLink } from '@angular/router';
-import { MatCardModule } from "@angular/material/card";
-import { NumberSpacerPipe } from "../../pipes/number-spacer-pipe";
+import { ProductCard } from "../../shared/product-card/product-card";
 
 @Component({
   selector: 'app-home',
@@ -13,8 +12,7 @@ import { NumberSpacerPipe } from "../../pipes/number-spacer-pipe";
     RouterLink,
     MatButtonModule,
     MatIcon,
-    MatCardModule,
-    NumberSpacerPipe
+    ProductCard
 ],
   templateUrl: './home.html',
   styleUrl: './home.scss',

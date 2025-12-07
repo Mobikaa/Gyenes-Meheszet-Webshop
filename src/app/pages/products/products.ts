@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import { Product } from '../../shared/models/product';
 import { ProductList } from '../../shared/constants/products_examples';
-import {MatCardModule} from '@angular/material/card';
-import { MatButton } from '@angular/material/button';
-import { NumberSpacerPipe } from "../../pipes/number-spacer-pipe";
+import { ProductCard } from '../../shared/product-card/product-card';
 
 @Component({
   selector: 'app-products',
+  standalone: true,
   imports: [
-    MatCardModule,
-    MatButton,
-    NumberSpacerPipe
+    ProductCard
 ],
   templateUrl: './products.html',
   styleUrl: './products.scss',
