@@ -1,1 +1,26 @@
-<p>cart works!</p>
+<div class="page-container">
+    @if(cartItems.length == 0){
+    <div class="empty-cart" >
+        <mat-icon aria-hidden="false" aria-label="Kosár" fontIcon="shopping_bag"></mat-icon>
+        <h1>A kosara jelenleg üres</h1>
+        <p>Helyezzen valamit a kosarába</p>
+        <button matButton="filled"> Termékek </button>
+    </div>
+    }
+    @else {
+    <div class="cart-not-empty">
+        <h1>Kosár tartalma</h1>
+
+        @for(item of cartItems; track item.id){
+            <div class="cart-item">
+                <img [src]="item.picture" [alt]="item.name">
+                <p class="title">{{item.name}}</p>
+                <p class="category">{{item.category}}</p>
+                <button matButton="filled" (click)="decreaseQuantity(item)"> - </button>
+                <p>{{item.quantity}}</p>
+                <button matButton="filled" (click)="increaseQuantity(item)"> + </button>
+            </div>
+        }
+    </div>
+    }
+</div>

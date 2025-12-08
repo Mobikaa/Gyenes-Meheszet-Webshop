@@ -1,0 +1,27 @@
+@use '../../../styles.scss' as styles;
+
+.page-container {
+    min-height: calc(100vh - 64px);
+}
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 64px);
+
+    mat-icon{
+        width: 100px;
+        height: 100px;
+        font-size: 100px;
+    }
+
+    p{
+        color: styles.$secondary-text-color;
+    }
+
+    button {
+        background-color: styles.$primary-color;
+    }
+}
