@@ -11,17 +11,137 @@
     justify-content: center;
     height: calc(100vh - 64px);
 
-    mat-icon{
+    mat-icon {
         width: 100px;
         height: 100px;
         font-size: 100px;
     }
 
-    p{
+    p {
         color: styles.$secondary-text-color;
     }
 
     button {
         background-color: styles.$primary-color;
     }
+}
+
+.cart-content {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px 0;
+
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+}
+
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+
+    .img {
+        flex-shrink: 0;
+        width: 120px;
+        height: 120px;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .item-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .category {
+            font-size: 14px;
+            color: styles.$secondary-text-color;
+            margin: 0;
+        }
+
+        .quantity {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            button {
+                //width: 32px;
+                height: 32px;
+                border-radius: 6px;
+                padding: 0;
+                font-size: 18px;
+                font-weight: bold;
+                background-color: styles.$primary-color;
+            }
+
+            p {
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+                width: 20px;
+                text-align: center;
+            }
+        }
+    }
+
+    .price-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .lower-price{
+            padding-top: 0;
+            margin-top: 0;
+            color: styles.$secondary-text-color;
+        }
+
+        .remove {
+            background: transparent;
+            color: styles.$error-color;
+            padding: 4px;
+            border-radius: 100%;
+
+            &:hover{
+                background: rgba(156, 163, 175, 0.2);
+            }
+        }
+    }
+
 }

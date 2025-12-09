@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../shared/models/product';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,10 @@ export class Cart {
   constructor() {
     this.loadCartFromStorage();
   }
+
+  cartItemCount$ = this.cartContent$.pipe(
+    map(items => items.reduce((sum, item) => sum + (item.quantity ?? 0), 0))
+  );
 
   //Adding an item into the cart.
   addToCart(product: Product) {

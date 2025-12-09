@@ -4,14 +4,14 @@ import { Product } from '../../shared/models/product';
 import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   imports: [
     MatButtonModule,
     MatIconModule,
-    CommonModule
+    RouterLink
   ],
   templateUrl: './cart.html',
   styleUrl: './cart.scss',

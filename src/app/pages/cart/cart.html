@@ -1,26 +1,44 @@
 <div class="page-container">
     @if(cartItems.length == 0){
-    <div class="empty-cart" >
+    <div class="empty-cart">
         <mat-icon aria-hidden="false" aria-label="Kosár" fontIcon="shopping_bag"></mat-icon>
         <h1>A kosara jelenleg üres</h1>
         <p>Helyezzen valamit a kosarába</p>
-        <button matButton="filled"> Termékek </button>
+        <button matButton="filled" [routerLink]="['/products']"> Termékek </button>
     </div>
     }
     @else {
     <div class="cart-not-empty">
-        <h1>Kosár tartalma</h1>
+        <div class="cart-content">
+            <h1>Kosár tartalma</h1>
 
-        @for(item of cartItems; track item.id){
+            @for(item of cartItems; track item.id){
             <div class="cart-item">
-                <img [src]="item.picture" [alt]="item.name">
-                <p class="title">{{item.name}}</p>
-                <p class="category">{{item.category}}</p>
-                <button matButton="filled" (click)="decreaseQuantity(item)"> - </button>
-                <p>{{item.quantity}}</p>
-                <button matButton="filled" (click)="increaseQuantity(item)"> + </button>
+                <div class="img">
+                    <img [src]="item.picture" [alt]="item.name">
+                </div>
+
+                <div class="item-content">
+                    <p class="title">{{item.name}}</p>
+                    <p class="category">{{item.category}}</p>
+
+                    <div class="quantity">
+                        <button matButton="filled" (click)="decreaseQuantity(item)"> - </button>
+                        <p>{{item.quantity}}</p>
+                        <button matButton="filled" (click)="increaseQuantity(item)"> + </button>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    <mat-icon class="remove" aria-hidden="false" aria-label="Törlés" fontIcon="delete" (click)="removeItem(item)"></mat-icon>
+
+                    <p class="price">Ár: {{item.price * item.quantity}} Ft</p>
+                    <p class="lower-price">Egységár: {{item.price}} Ft</p>
+                </div>
+
             </div>
-        }
+            }
+        </div>
     </div>
     }
 </div>

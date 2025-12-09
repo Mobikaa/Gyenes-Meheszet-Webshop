@@ -22,8 +22,8 @@
           </div>
 
           <div class="nav-icons">
-            <a routerLinkActive="active-list-item" routerLink="/cart">
-              <mat-icon aria-hidden="false" aria-label="Kosár" fontIcon="shopping_cart"></mat-icon>
+            <a routerLinkActive="active-list-item" routerLink="/cart" >
+              <mat-icon [matBadge]="cartItemCount$ | async" [matBadgeHidden]="(cartItemCount$ | async) === 0" aria-hidden="false" aria-label="Kosár" fontIcon="shopping_cart"></mat-icon>
             </a>
             <a routerLinkActive="active-list-item" routerLink="/profile">
               <mat-icon aria-hidden="false" aria-label="Profil" fontIcon="person"></mat-icon>
