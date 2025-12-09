@@ -1,0 +1,12 @@
+<div class="summarize-container">
+    <p class="title">Rendelés összegzés</p>
+    @for(item of summary$ | async; track item.id){
+    <div class="item">
+        <p class="name">{{item.name}} x {{item.quantity}}</p>
+        <p class="price">{{item.total | numberSpacer}} Ft</p>
+    </div>
+    }
+    <hr>
+    <p class="total-text">Teljes összeg:</p>
+    <p class="total-price">{{ (total$ | async) ?? 0 | numberSpacer}} Ft</p>
+</div>

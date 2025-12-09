@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../shared/models/product';
-import { BehaviorSubject, map } from 'rxjs';
+import { CartSummaryItem } from '../shared/models/cartSummaryItem';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,10 @@ export class Cart {
   cartItemCount$ = this.cartContent$.pipe(
     map(items => items.reduce((sum, item) => sum + (item.quantity ?? 0), 0))
   );
+
+  getItems() {
+    return this.cartContent;
+  }
 
   //Adding an item into the cart.
   addToCart(product: Product) {
@@ -92,7 +97,26 @@ export class Cart {
     this.saveCartToStorage([...this.cartContent]);
   }
 
-  getItems() {
-    return this.cartContent;
+  //This method gives a list that shows the items in the cart, their quantity and their price summed.
+  getCartSummary$(): Observable<CartSummaryItem[]> {
+    return this.cartContent$.pipe(
+      map(items =>
+        items.map(item => ({
+          id: item.id,
+          name: item.name,
+          quantity: item.quantity,
+          total: item.quantity * item.price
+        }))
+      )
+    );
+  }
+
+  //This is for the summarize component to show the full price of the order
+  getTotalPrice$() {
+    return this.cartContent$.pipe(
+      map(items =>
+        items.reduce((sum, item) => sum + item.quantity * item.price, 0)
+      )
+    );
   }
 }

@@ -5,14 +5,16 @@ import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { Summarize } from "../../shared/summarize/summarize";
 
 @Component({
   selector: 'app-cart',
   imports: [
     MatButtonModule,
     MatIconModule,
-    RouterLink
-  ],
+    RouterLink,
+    Summarize
+],
   templateUrl: './cart.html',
   styleUrl: './cart.scss',
 })
