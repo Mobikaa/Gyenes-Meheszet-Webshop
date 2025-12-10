@@ -32,8 +32,8 @@
                 <div class="price-section">
                     <mat-icon class="remove" aria-hidden="false" aria-label="Törlés" fontIcon="delete" (click)="removeItem(item)"></mat-icon>
 
-                    <p class="price">Ár: {{item.price * item.quantity}} Ft</p>
-                    <p class="lower-price">Egységár: {{item.price}} Ft</p>
+                    <p class="price">Ár: {{item.price * item.quantity | numberSpacer}} Ft</p>
+                    <p class="lower-price">Egységár: {{item.price | numberSpacer}} Ft</p>
                 </div>
 
             </div>

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Summarize } from "../../shared/summarize/summarize";
+import { NumberSpacerPipe } from "../../pipes/number-spacer-pipe";
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,8 @@ import { Summarize } from "../../shared/summarize/summarize";
     MatButtonModule,
     MatIconModule,
     RouterLink,
-    Summarize
+    Summarize,
+    NumberSpacerPipe
 ],
   templateUrl: './cart.html',
   styleUrl: './cart.scss',

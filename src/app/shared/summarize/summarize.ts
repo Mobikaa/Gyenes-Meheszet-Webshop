@@ -4,13 +4,15 @@ import { Observable } from 'rxjs';
 import { CartSummaryItem } from '../models/cartSummaryItem';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { NumberSpacerPipe } from "../../pipes/number-spacer-pipe";
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-summarize',
   imports: [
     CommonModule,
     AsyncPipe,
-    NumberSpacerPipe
+    NumberSpacerPipe,
+    MatButtonModule
   ],
   templateUrl: './summarize.html',
   styleUrl: './summarize.scss',

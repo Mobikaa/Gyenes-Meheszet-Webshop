@@ -1,0 +1,55 @@
+@use '../../../styles.scss' as styles;
+
+.summarize-container {
+    min-width: 300px;
+    margin: 20px;
+
+    .border {
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    }
+
+    .title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .name {
+            font-size: 14px;
+            color: styles.$secondary-text-color;
+            margin: 0;
+        }
+
+        .total-text,
+        .total-price {
+            font-weight: 500;
+        }
+
+    }
+
+    button {
+        width: 100%;
+        border-radius: 10px;
+        background-color: styles.$primary-color;
+
+        &:hover{
+            background-color: styles.$hover-bg-color;
+        }
+    }
+}
