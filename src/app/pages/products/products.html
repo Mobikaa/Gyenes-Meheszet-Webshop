@@ -7,5 +7,7 @@
         @for(product of products; track product.id){
         <app-product-card [product]="product"></app-product-card>
         }
+
+        <button matButton="filled" (click)="loadMore()">Több betöltése</button>
     </div>
 </div>

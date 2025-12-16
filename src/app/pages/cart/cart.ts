@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, } from '@angular/core';
-import { Cart as CartService } from '../../services/cart';
+import { Cart as CartService } from '../../services/cart/cart';
 import { Product } from '../../shared/models/product';
 import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';

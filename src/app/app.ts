@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Menu } from "./shared/menu/menu";
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
-import { Cart as CartService } from './services/cart';
+import { Cart as CartService } from './services/cart/cart';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 

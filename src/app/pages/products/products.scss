@@ -24,21 +24,31 @@
 .content {
     max-width: 1280px;
     margin: 10px auto;
-    padding: 0 1.5rem;
+    //padding: 0 1.5rem;
 
-    display: flex;
-    flex-flow: row wrap;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    justify-items: stretch;
 
-    app-product-card {
-        flex: 0 1 calc(25% - 1rem);
-
-        @media (max-width: 1024px) {
-            flex: 0 1 calc(50% - 1rem);
-        }
-
-        @media (max-width: 600px) {
-            flex: 0 1 calc(100% - 1rem);
-        }
+    @media (max-width: 1300px) {
+        grid-template-columns: repeat(3, 1fr);
     }
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 16px;
+    border-radius: 10px;
+    background-color: styles.$primary-color !important;
 }
