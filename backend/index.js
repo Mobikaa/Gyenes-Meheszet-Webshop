@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//Getting the products
+//Getting the products 
 app.use('/api/products', productRoutes);
 
 app.listen(process.env.PORT, () => {

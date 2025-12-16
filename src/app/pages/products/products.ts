@@ -33,9 +33,6 @@ export class Products implements OnInit, OnDestroy {
         this.loading = false;
       }
     });
-
-    console.log(this.products);
-
   }
 
   loadMore() {
