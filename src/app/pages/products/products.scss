@@ -52,3 +52,8 @@ button {
     border-radius: 10px;
     background-color: styles.$primary-color !important;
 }
+
+mat-spinner {
+    grid-column: 1 / -1;
+    justify-self: center;
+}

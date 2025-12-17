@@ -10,6 +10,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/products/products').then(m => m.Products)
     },
     {
+        path: 'products/:id',
+        loadComponent: () => import('./pages/product-detail/product-detail').then(m => m.ProductDetail)
+    },
+    {
         path: 'login',
         loadComponent: () => import('./pages/login/login').then(m => m.Login)
     },
@@ -28,6 +32,10 @@ export const routes: Routes = [
     {
         path: 'contact',
         loadComponent: () => import('./pages/contact/contact').then(m => m.Contact)
+    },
+    {
+        path: 'checkout',
+        loadComponent: () => import('./pages/checkout/checkout').then(m => m.Checkout)
     },
 
     { path: '', redirectTo: 'home', pathMatch: 'full' },

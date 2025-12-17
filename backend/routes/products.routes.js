@@ -44,6 +44,23 @@ router.get('/featured', async (req, res) => {
   }
 });
 
+router.get('/rows', async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT COUNT(id)
+     FROM products`
+    );
+
+    const rows = Number(result.rows[0].count);
+
+    res.json({ rows });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+
 router.get('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id);

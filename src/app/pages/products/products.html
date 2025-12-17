@@ -5,9 +5,17 @@
     </div>
     <div class="content">
         @for(product of products; track product.id){
-        <app-product-card [product]="product"></app-product-card>
+            <app-product-card [product]="product"></app-product-card>
         }
 
-        <button matButton="filled" (click)="loadMore()">Több betöltése</button>
+        @if(products.length != totalProducts){
+            @if(loading){
+                <mat-spinner></mat-spinner>
+            }
+            @else{
+                <button matButton="filled" (click)="loadMore()">Több betöltése</button>
+            }
+
+        }
     </div>
 </div>
