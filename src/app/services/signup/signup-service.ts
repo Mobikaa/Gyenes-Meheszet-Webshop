@@ -5,13 +5,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class SignupService {
-  private apiUrl = 'http://localhost:3000//api/users/signup';
+  private apiUrl = 'http://localhost:3000/api/users/signup';
 
   constructor(private http: HttpClient) { }
 
   register(email: string, password: string){
-     return this.http.post(
-    'http://localhost:3000/api/users/register',
+     return this.http.post(this.apiUrl,
     { email, password }
   );
   }

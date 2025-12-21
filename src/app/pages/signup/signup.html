@@ -3,12 +3,12 @@
     <h1>Regisztráljon fiókot</h1>
     <p class="subtext">Hozzon létre egy új fiókot</p>
 
-    <form [formGroup]="signUpForm">
+    <form [formGroup]="signUpForm" (ngSubmit) = "register()">
         <div class="form-content">
             <mat-form-field class="form-item">
                 <mat-label>E-mail cím</mat-label>
                 <input type="email" matInput placeholder="pelda@email.com" formControlName="email">
-                @if (signUpForm.get('email')?.hasError('email') && !signUpForm.get('email')?.hasError('required')) {
+                @if ((signUpForm.get('email')?.hasError('email') || signUpForm.get('email')?.hasError('pattern')) && !signUpForm.get('email')?.hasError('required')) {
                     <mat-error>Adjon meg egy érvényes E-mail címet</mat-error>
                 }
                 @if (signUpForm.get('email')?.hasError('required')) {
@@ -19,34 +19,50 @@
             <mat-form-field class="form-item">
                 <mat-label>E-mail cím megerősítés</mat-label>
                 <input type="email" matInput placeholder="pelda@email.com" formControlName="reEmail">
-                @if (signUpForm.get('reEmail')?.hasError('email') && !signUpForm.get('reEmail')?.hasError('required')) {
+                @if ((signUpForm.get('reEmail')?.hasError('email') || signUpForm.get('reEmail')?.hasError('pattern')) && !signUpForm.get('reEmail')?.hasError('required')) {
                     <mat-error>Adjon meg egy érvényes E-mail címet</mat-error>
                 }
+
                 @if (signUpForm.get('reEmail')?.hasError('required')) {
                     <mat-error>E-mail cím megadása <strong>kötelező</strong></mat-error>
                 }
-                @if (signUpForm.hasError('emailsMismatch')) {
+
+                @if (signUpForm.get('reEmail')?.hasError('emailsMismatch')) {
                     <mat-error>E-mail címek nem egyeznek</mat-error>
                 }
+                
             </mat-form-field>
-
             <mat-form-field class="form-item">
                 <mat-label>Jelszó</mat-label>
-                <input type="password" matInput formControlName="password">                
+                <input type="password" matInput formControlName="password">  
+
                 @if (signUpForm.get('password')?.hasError('required')) {
                     <mat-error>Jelszó megadása <strong>kötelező</strong></mat-error>
+                }
+
+                @if (signUpForm.get('password')?.hasError('minlength')) {
+                    <mat-error>Minimum <strong>6 karakter</strong></mat-error>
                 }
             </mat-form-field>
 
             <mat-form-field class="form-item">
                 <mat-label>Jelszó megerősítés</mat-label>
                 <input type="password" matInput formControlName="rePassword">
-                @if (signUpForm.get('password')?.hasError('required')) {
+                @if (signUpForm.get('rePassword')?.hasError('required')) {
                     <mat-error>Jelszó megadása <strong>kötelező</strong></mat-error>
                 }
+
+                @if (signUpForm.get('rePassword')?.hasError('minlength')) {
+                    <mat-error>Minimum <strong>6 karakter</strong></mat-error>
+                }
+
+                @if (signUpForm.get('rePassword')?.hasError('passwordsMismatch')) {
+                    <mat-error>Jelszavak nem egyeznek</mat-error>
+                }
+                
             </mat-form-field>
 
-            <button matButton="filled" (click)="register()" class="form-button">Regisztráció</button>
+            <button matButton="filled" type="submit" class="form-button">Regisztráció</button>
 
             <p class="signup-navigation">Van már fiókod? <a [routerLink]="['/login']">Lépj be itt!</a></p>
         </div>

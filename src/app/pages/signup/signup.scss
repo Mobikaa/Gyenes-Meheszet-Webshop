@@ -50,13 +50,14 @@ h1 {
 }
 
 .form-button {
+    margin-top: 20px;
     width: 80%;
     background-color: styles.$primary-color !important;
     border-radius: 5px;
 }
 
 .signup-navigation {
-    margin-top: 30px;
+    margin-top: 15px;
     color: styles.$body-text-color;
 
     a {
