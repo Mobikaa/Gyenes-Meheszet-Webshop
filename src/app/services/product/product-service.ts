@@ -19,7 +19,12 @@ export class ProductService {
     return this.http.get<Product[]>(this.apiUrl, { params });
   }
 
-  getLength(){
-    return this.http.get<{rows: number}>(`${this.apiUrl}/rows`);
+  getFeaturedProducts(ids: number[]) {
+    let params = new HttpParams().set('ids', ids.join(','));
+    return this.http.get<Product[]>(`${this.apiUrl}/featured`, { params })
+  }
+
+  getLength() {
+    return this.http.get<{ rows: number }>(`${this.apiUrl}/rows`);
   }
 }
