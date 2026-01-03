@@ -2,19 +2,19 @@
     <mat-icon aria-hidden="false" aria-label="Bejelentkezés ikon" fontIcon="person"></mat-icon>
     <h1>Üdvözöljük</h1>
     <p class = "subtext">Jelentkezzen be a fiókjába</p>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit) = "login()">
         <div class="form-content">
             <mat-form-field class="form-item">
                 <mat-label>E-mail cím</mat-label>
-                <input type="email" matInput placeholder="pelda@email.com">
+                <input type="email" matInput placeholder="pelda@email.com" formControlName="email">
             </mat-form-field>
 
             <mat-form-field class="form-item">
                 <mat-label>Jelszó</mat-label>
-                <input type="password" matInput>
+                <input type="password" matInput formControlName="password">
             </mat-form-field>
 
-            <button matButton="filled" class="form-button">Bejelentkezés</button>
+            <button matButton="filled" type="submit" class="form-button">Bejelentkezés</button>
 
             <p class="login-navigation">Még nincs fiókod? <a [routerLink]="['/signup']">Regisztrálj itt!</a></p>
         </div>

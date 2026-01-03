@@ -29,7 +29,7 @@ export class Signup implements OnDestroy{
   private subscription: Subscription | undefined;
 
 
-  signUpForm = new FormGroup({
+  readonly signUpForm = new FormGroup({
     email: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.email, Validators.pattern(this.emailRegex)]
