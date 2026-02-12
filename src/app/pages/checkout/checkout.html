@@ -1,1 +1,88 @@
-<p>checkout works!</p>
+<div class="content">
+    <mat-stepper linear="true" class = "stepper">
+      <div class="step-section">
+        <mat-step [stepControl]="firstFormGroup" label="Személyes adatok">
+          <form [formGroup]="firstFormGroup" class = "form">
+            <mat-form-field class="form-field">
+              <mat-label>Név</mat-label>
+              <input
+                matInput
+                placeholder="Keresztnév és vezetéknév"
+                formControlName="nameCtrl"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email cím" formControlName="emailCtrl" required />
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Telefonszám</mat-label>
+              <input matInput placeholder="Telefonszám" formControlName="phoneCtrl" required />
+            </mat-form-field>
+            <div>
+              <button matButton matStepperNext class = "nextbtn">Tovább</button>
+            </div>
+          </form>
+        </mat-step>
+      </div>
+      <div class="step-section">
+        <mat-step [stepControl]="secondFormGroup" label="Szállítási adatok">
+          <form [formGroup]="secondFormGroup" class = "form">
+            <mat-form-field class="form-field">
+              <mat-label>Ország</mat-label>
+              <input matInput formControlName="countryCtrl" placeholder="Ország" required />
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Település</mat-label>
+              <input matInput formControlName="cityCtrl" placeholder="Település" required />
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Irányítószám</mat-label>
+              <input matInput formControlName="postalCtrl" placeholder="Irányítószám" required />
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Utca</mat-label>
+              <input matInput formControlName="streetCtrl" placeholder="Utca" required />
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Házszám</mat-label>
+              <input matInput formControlName="houseNumberCtrl" placeholder="Házszám" required />
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>Lépcsőház, ajtó</mat-label>
+              <input matInput formControlName="floorDoorCtrl" placeholder="Lépcsőház, ajtó" />
+            </mat-form-field>
+            <div>
+              <button matButton matStepperPrevious>Vissza</button>
+              <button matButton matStepperNext class = "nextbtn">Tovább</button>
+            </div>
+          </form>
+        </mat-step>
+      </div>
+      <div class="step-section">
+        <mat-step label="Véglegesítés">
+          <p class = "form">A vásárlás adatai:</p>
+          <p>Név: {{ firstFormGroup.get('nameCtrl')?.value }}</p>
+          <p>Email: {{ firstFormGroup.get('emailCtrl')?.value }}</p>
+          <p>Telefonszám: {{ firstFormGroup.get('phoneCtrl')?.value }}</p>
+          <p>Ország: {{ secondFormGroup.get('countryCtrl')?.value }}</p>
+          <p>Település: {{ secondFormGroup.get('cityCtrl')?.value }}</p>
+          <p>Irányítószám: {{ secondFormGroup.get('postalCtrl')?.value }}</p>
+          <p>Utca: {{ secondFormGroup.get('streetCtrl')?.value }}</p>
+          <p>Házszám: {{ secondFormGroup.get('houseNumberCtrl')?.value }}</p>
+          @if (secondFormGroup.get('floorDoorCtrl')?.value) {
+            <p>Lépcsőház, ajtó: {{ secondFormGroup.get('floorDoorCtrl')?.value }}</p>
+          }
+    
+          <div>
+            <button matButton matStepperPrevious>Vissza</button>
+          </div>
+        </mat-step>
+      </div>
+    </mat-stepper>
+
+     <div class="summarize-component">
+            <app-summarize></app-summarize>
+        </div>
+</div>

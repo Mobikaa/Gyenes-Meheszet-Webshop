@@ -1,1 +1,43 @@
-<p>profile works!</p>
+<div class="content">
+  <div class="header-section">
+    <div class="header-content">
+      <div class="header-name">
+        <mat-icon class="header-icon">person</mat-icon>
+        <p class="header-name-text">John User</p>
+      </div>
+      <p class="header-email">user@email.com</p>
+    </div>
+    <button mat-button (click)="logout()"><mat-icon>logout</mat-icon> Kijelentkezés</button>
+  </div>
+
+  <div class="Information-section">
+    <p class="Information-title">Profil Információk</p>
+
+    <p class="Information-name"><mat-icon>person</mat-icon> Név:</p>
+    <p class="Information">John User</p>
+
+    <p class="Information-name"><mat-icon>email</mat-icon> Email:</p>
+    <p class="Information">user@email.com</p>
+
+    <p class="Information-name"><mat-icon>phone</mat-icon> Telefonszám:</p>
+    <p class="Information">123-456-7890</p>
+
+    <p class="Information-name"><mat-icon>flag</mat-icon> Ország:</p>
+    <p class="Information">Magyarország</p>
+
+    <p class="Information-name"><mat-icon>location_on</mat-icon> Település:</p>
+    <p class="Information">Budapest</p>
+
+    <p class="Information-name"><mat-icon>markunread</mat-icon> Irányítószám:</p>
+    <p class="Information">1051</p>
+
+    <p class="Information-name"><mat-icon>home</mat-icon> Utca:</p>
+    <p class="Information">Kossuth Lajos utca 123.</p>
+
+    <p class="Information-name"><mat-icon>home</mat-icon> Házszám:</p>
+    <p class="Information">123.</p>
+
+    <p class="Information-name"><mat-icon>home</mat-icon> Lépcsőház, ajtó:</p>
+    <p class="Information">123</p>
+  </div>
+</div>

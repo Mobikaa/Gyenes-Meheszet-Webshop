@@ -1,0 +1,70 @@
+@use '../../../styles.scss' as styles;
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 20px;
+  max-width: 800px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: styles.$primary-color;
+  padding: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  button {
+    background-color: styles.$light-hilight-color;
+    border-radius: 8px;
+  }
+}
+.header-email,
+.header-name-text {
+  color: styles.$text-color;
+}
+
+.header-icon {
+  background-color: styles.$bg-color;
+  border-radius: 100%;
+  padding: 10px;
+  margin-right: 10px;
+  color: styles.$primary-color;
+}
+
+.header-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Information-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: styles.$secondary-text-color;
+}
+
+.Information {
+  background-color: #8280806a;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.Information-section {
+  padding: 20px;
+}
