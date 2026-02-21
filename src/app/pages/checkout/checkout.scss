@@ -1,0 +1,48 @@
+@use '../../../styles.scss' as styles;
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    min-height: auto;
+    flex-direction: column;
+  }
+}
+
+.stepper {
+  width: 60%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.step-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-step {
+  margin-bottom: 100px !important;
+}
+
+.form {
+  margin-top: 1rem;
+}
+
+.nextbtn {
+  float: right;
+}
+
+.summarize-component {
+  padding: 20px 0;
+}
