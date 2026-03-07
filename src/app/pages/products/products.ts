@@ -39,8 +39,7 @@ export class Products implements OnInit, OnDestroy {
     });
 
     this.lengthSubscription = this.productService.getLength().subscribe(res => {
-      this.totalProducts = res.rows;
-      console.log(this.totalProducts);    
+      this.totalProducts = res.rows;    
     });
   }
 
@@ -55,11 +54,7 @@ export class Products implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log("Products onDestroy called.");
-    
     this.productsSubscription?.unsubscribe();
     this.lengthSubscription?.unsubscribe();
-
-    console.log("Unsubscribed.");    
   }
 }

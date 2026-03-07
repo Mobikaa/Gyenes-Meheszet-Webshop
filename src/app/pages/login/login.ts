@@ -2,10 +2,11 @@ import { Component, OnDestroy } from '@angular/core';
 import { MatInputModule, MatLabel, MatFormField } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from "@angular/router";
+import { RouterLink, Router } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../../services/login/login-service';
+import { NotificationService } from '../../services/notification/notification-service';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,11 @@ export class Login implements OnDestroy {
     })
   });
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private loginService: LoginService,
+    private notificationService: NotificationService,
+    private router: Router
+  ) { }
 
   login() {
 
@@ -45,21 +50,31 @@ export class Login implements OnDestroy {
     if (email === '' || email === null ||
       password === '' || password === null
     ) {
-      console.error("Hibás adatok!");
+      this.notificationService.error("Kérjük, töltse ki az összes mezőt!");
 
       this.loginForm.controls.email.markAsTouched();
       this.loginForm.controls.password.markAsTouched();
       return;
 
     } else {
-      console.log("email:" + email);
-      console.log("password:" + password);
       this.subscription = this.loginService.login(email, password).subscribe({
-        next: (res) => {
-          console.log('Sikeres bejelentkezés', res);
+        next: (res: any) => {
+          //console.log('Sikeres bejelentkezés', res);
+          if (res && res.token) {
+            sessionStorage.setItem('token', res.token);
+            this.loginService.setLoginStatus(true);
+            this.notificationService.success('Sikeres bejelentkezés!');
+            
+            this.loginForm.reset();
+            
+            setTimeout(() => {
+              this.router.navigate(['/home']);
+            }, 1000);
+          }
         },
         error: (err) => {
           console.error('Hiba a bejelentkezésnél', err);
+          this.notificationService.error('Bejelentkezés sikertelen! Hibás email vagy jelszó.');
         }
       });
     }

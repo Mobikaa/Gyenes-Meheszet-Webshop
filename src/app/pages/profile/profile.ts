@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { LogoutService } from '../../services/logout/logout-service';
 
 @Component({
   selector: 'app-profile',
@@ -9,5 +10,9 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './profile.scss',
 })
 export class Profile {
-  logout() {}
+  constructor(private logoutService: LogoutService) { }
+
+  logout() {
+    this.logoutService.logout();
+  }
 }

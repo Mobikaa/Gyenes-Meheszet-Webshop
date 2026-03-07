@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../../shared/models/product';
 import { CartSummaryItem } from '../../shared/models/cartSummaryItem';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { NotificationService } from '../notification/notification-service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class Cart {
   private STORAGE_KEY = 'cart';
 
 
-  constructor() {
+  constructor(private notificationService: NotificationService) {
     this.loadCartFromStorage();
   }
 
@@ -37,7 +38,8 @@ export class Cart {
     else {
       this.cartContent.push({ ...product, quantity: 1 });
     }
-
+    
+    this.notificationService.success('Sikeresen hozzáadva a kosárhoz!', 600 );
     this.emitCart();
   }
 

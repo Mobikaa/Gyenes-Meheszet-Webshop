@@ -29,7 +29,7 @@ export class Home implements OnInit, OnDestroy {
     this.subscription = this.productService.getFeaturedProducts([1,2,3,4]).subscribe({
       next: (data) => {
         this.products = data;
-        console.log(this.products);
+        //console.log(this.products);
         
       },
       error: (err) =>{

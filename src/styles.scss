@@ -20,6 +20,7 @@ $label-color:  #9CA3AF;
 $footer-bg-color: #111827;
 $error-color: #DC2626;
 $succes-color: #15803D;
+$warning-color: #FFB020;
 
 html {
   @include mat.theme((
@@ -46,4 +47,82 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .page-container{
   background-color: $bg-color;
+}
+
+// Snackbar
+.cdk-overlay-container {
+  margin-top: 70px !important;
+  border-radius: 5px !important;
+}
+
+.snackbar-success {
+  background-color: $succes-color !important;
+
+  .mdc-snackbar__surface {
+    background-color: $succes-color !important;
+  }
+
+  .mat-mdc-snack-bar-label,
+  .mat-simple-snackbar-content {
+    color: white !important;
+  }
+
+  .mdc-button,
+  .mat-mdc-button {
+    color: white !important;
+  }
+}
+
+.snackbar-error {
+  background-color: $error-color !important;
+
+  .mdc-snackbar__surface {
+    background-color: $error-color !important;
+  }
+
+  .mat-mdc-snack-bar-label,
+  .mat-simple-snackbar-content {
+    color: white !important;
+  }
+
+  .mdc-button,
+  .mat-mdc-button {
+    color: white !important;
+  }
+}
+
+.snackbar-info {
+  background-color: #2196f3 !important;
+
+  .mdc-snackbar__surface {
+    background-color: #2196f3 !important;
+  }
+
+  .mat-mdc-snack-bar-label,
+  .mat-simple-snackbar-content {
+    color: white !important;
+  }
+
+  .mdc-button,
+  .mat-mdc-button {
+    color: white !important;
+  }
+}
+
+.snackbar-warning {
+  background-color: $warning-color !important;
+
+  .mdc-snackbar__surface {
+    background-color: $warning-color !important;
+  }
+
+  .mat-mdc-snack-bar-label,
+  .mat-simple-snackbar-content {
+    color: white !important;
+  }
+
+  .mdc-button,
+  .mat-mdc-button {
+    color: white !important;
+  }
 }

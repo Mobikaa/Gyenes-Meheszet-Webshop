@@ -28,7 +28,7 @@ export class Cart implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.cartService.cartContent$.subscribe(items => {
-      console.log("Kosár tartalma frissült:", items);
+      //console.log("Kosár tartalma frissült:", items);
       this.cartItems = items;
     });
   }
@@ -46,7 +46,6 @@ export class Cart implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("CartComponent elpusztult, leiratkozás...");
     this.subscription?.unsubscribe();
   }
 }

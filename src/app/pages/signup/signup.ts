@@ -7,6 +7,7 @@ import { SignupService } from '../../services/signup/signup-service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { matchFieldsValidator } from './match-field-validator';
 import { Subscription } from 'rxjs';
+import { NotificationService } from '../../services/notification/notification-service';
 
 @Component({
   selector: 'app-signup',
@@ -22,8 +23,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './signup.html',
   styleUrl: './signup.scss',
 })
-export class Signup implements OnDestroy{
-  
+export class Signup implements OnDestroy {
+
   private emailRegex: RegExp = /^[a-zA-Z0-9](?:[a-zA-Z0-9._]*[a-zA-Z0-9])?@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
 
   private subscription: Subscription | undefined;
@@ -49,11 +50,13 @@ export class Signup implements OnDestroy{
   }
   );
 
-  constructor(private signupService: SignupService) { }
+  constructor(
+    private signupService: SignupService,
+    private notificationService: NotificationService
+  ) { }
 
   register() {
     if (this.signUpForm.invalid) {
-      console.log("helytelen form");      
       this.signUpForm.markAllAsTouched();
       return;
     }
@@ -64,21 +67,18 @@ export class Signup implements OnDestroy{
     if (email === '' || password === '' || this.signUpForm.invalid) {
       console.error("Hibás adatok!")
     } else {
-      console.log("email:" + email);
-      console.log("password:" + password);
       this.subscription = this.signupService.register(email, password).subscribe({
         next: (res) => {
-          console.log('Sikeres regisztráció', res);
+          this.notificationService.success('Sikeres regisztráció!');
         },
         error: (err) => {
-          console.error('Hiba a regisztrációnál', err);
+          this.notificationService.error('Hiba a regisztrációnál!');
         }
       });
     }
   }
 
   ngOnDestroy(): void {
-    console.log("register service unsubscribed");    
     this.subscription?.unsubscribe();
   }
 }
