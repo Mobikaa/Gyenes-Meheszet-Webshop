@@ -15,7 +15,7 @@
       <p class="Information-title">Profil Információk</p>
       @if (!editMode) {
         <button mat-button (click)="startEdit()" class="edit-button">
-          <mat-icon>edit</mat-icon> Cím módosítása
+          <mat-icon>edit</mat-icon> Adatok módosítása
         </button>
       }
     </div>
@@ -49,45 +49,45 @@
       <p class="Information">{{ user?.address?.floor_door  || 'Nincs elmentve' }}</p>
 
     } @else if (editMode && updatedAddress) {
-      <div class="edit-form">
+      <div class="edit-form" [formGroup]="AdddressForm">
         <mat-form-field appearance="outline">
           <mat-label>Név</mat-label>
-          <input matInput [(ngModel)]="updatedAddress!.full_name" placeholder="Név">
+          <input matInput placeholder="Név" formControlName="full_name">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Telefonszám</mat-label>
-          <input matInput [(ngModel)]="updatedAddress!.phone_number" placeholder="Telefonszám">
+          <input matInput placeholder="Telefonszám" formControlName="phone_number">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Ország</mat-label>
-          <input matInput [(ngModel)]="updatedAddress!.country" placeholder="Ország">
+          <input matInput placeholder="Ország" formControlName="country">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Település</mat-label>
-          <input matInput [(ngModel)]="updatedAddress!.city" placeholder="Település">
+          <input matInput placeholder="Település" formControlName="city">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Irányítószám</mat-label>
-          <input matInput [(ngModel)]="updatedAddress!.postal_code" placeholder="Irányítószám">
+          <input matInput placeholder="Irányítószám" formControlName="postal_code">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Utca</mat-label>
-          <input matInput [(ngModel)]="updatedAddress!.street" placeholder="Utca">
+          <input matInput placeholder="Utca" formControlName="street">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Házszám</mat-label>
-          <input matInput [(ngModel)]="updatedAddress!.house_number" placeholder="Házszám">
+          <input matInput placeholder="Házszám" formControlName="house_number">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Lépcsőház, ajtó</mat-label>
-          <input matInput [(ngModel)]="updatedAddress!.floor_door" placeholder="Lépcsőház, ajtó">
+          <input matInput placeholder="Lépcsőház, ajtó" formControlName="floor_door">
         </mat-form-field>
 
         <div class="form-buttons">

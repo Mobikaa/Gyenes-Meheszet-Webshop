@@ -3,7 +3,7 @@ import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormField } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, } from '@angular/forms';
 import { LogoutService } from '../../services/logout/logout-service';
 import { ProfileService } from '../../services/profile/profile-service';
 import { User } from '../../shared/models/user';
@@ -11,7 +11,13 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
-  imports: [MatIcon, MatButton, MatInputModule, MatFormField, FormsModule],
+  imports: [
+    MatIcon,
+    MatButton,
+    MatInputModule,
+    MatFormField,
+    ReactiveFormsModule
+  ],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
@@ -20,6 +26,17 @@ export class Profile implements OnInit, OnDestroy {
   editMode = false;
   updatedAddress?: User['address'];
   private subscriptions: Subscription[] = [];
+
+  readonly AdddressForm = new FormGroup({
+    full_name: new FormControl(),
+    phone_number: new FormControl(),
+    country: new FormControl(),
+    postal_code: new FormControl(),
+    city: new FormControl(),
+    street: new FormControl(),
+    house_number: new FormControl(),
+    floor_door: new FormControl(),
+  });
 
   constructor(
     private logoutService: LogoutService,
@@ -52,16 +69,18 @@ export class Profile implements OnInit, OnDestroy {
       return;
     }
     this.updatedAddress = { ...this.user.address };
+    this.AdddressForm.patchValue(this.updatedAddress);
     this.editMode = true;
   }
 
   cancelEdit() {
     this.editMode = false;
     this.updatedAddress = undefined;
+    this.AdddressForm.reset();
   }
 
   saveAddress() {
-    if (!this.user || !this.updatedAddress) {
+    if (!this.user) {
       return;
     }
 
@@ -72,6 +91,8 @@ export class Profile implements OnInit, OnDestroy {
       console.warn('Missing token/userId. Cannot save address.');
       return;
     }
+
+    this.updatedAddress = this.AdddressForm.value as User['address'];
 
     this.subscriptions.push(
       this.profileService.updateUserProfile(userId, { address: this.updatedAddress }, token).subscribe({
