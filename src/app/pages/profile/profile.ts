@@ -19,7 +19,7 @@ export class Profile implements OnInit, OnDestroy {
   user?: User;
   editMode = false;
   updatedAddress?: User['address'];
-  private subscription: Subscription | undefined;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private logoutService: LogoutService,
@@ -35,15 +35,16 @@ export class Profile implements OnInit, OnDestroy {
       return;
     }
 
-    this.profileService.getUserProfile(userId, token).subscribe({
-      next: (user) => {
-        this.user = user;
-        console.log('Loaded user profile from API:', user);
-      },
-      error: (err) => {
-        console.error('Failed to load user profile', err);
-      }
-    });
+    this.subscriptions.push(
+      this.profileService.getUserProfile(userId, token).subscribe({
+        next: (user) => {
+          this.user = user;
+          console.log('Loaded user profile from API:', user);
+        },
+        error: (err) => {
+          console.error('Failed to load user profile', err);
+        }
+      }));
   }
 
   startEdit() {
@@ -72,17 +73,19 @@ export class Profile implements OnInit, OnDestroy {
       return;
     }
 
-    this.subscription = this.profileService.updateUserProfile(userId, { address: this.updatedAddress }, token).subscribe({
-      next: (user) => {
-        this.user = user;
-        this.editMode = false;
-        this.updatedAddress = undefined;
-        console.log('User address updated', user);
-      },
-      error: (err) => {
-        console.error('Failed to save address', err);
-      }
-    });
+    this.subscriptions.push(
+      this.profileService.updateUserProfile(userId, { address: this.updatedAddress }, token).subscribe({
+        next: (user) => {
+          this.user = user;
+          this.editMode = false;
+          this.updatedAddress = undefined;
+          console.log('User address updated', user);
+        },
+        error: (err) => {
+          console.error('Failed to save address', err);
+        }
+      })
+    );
   }
 
   logout() {
@@ -90,6 +93,6 @@ export class Profile implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription?.unsubscribe();
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
