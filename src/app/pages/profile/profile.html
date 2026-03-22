@@ -3,41 +3,102 @@
     <div class="header-content">
       <div class="header-name">
         <mat-icon class="header-icon">person</mat-icon>
-        <p class="header-name-text">John User</p>
+          <p class="header-name-text">{{ user?.address?.full_name  || 'Felhasználó' }}</p>
       </div>
-      <p class="header-email">user@email.com</p>
+      <p class="header-email">{{ user?.email }}</p>
     </div>
     <button mat-button (click)="logout()"><mat-icon>logout</mat-icon> Kijelentkezés</button>
   </div>
 
   <div class="Information-section">
-    <p class="Information-title">Profil Információk</p>
+    <div class="section-header">
+      <p class="Information-title">Profil Információk</p>
+      @if (!editMode) {
+        <button mat-button (click)="startEdit()" class="edit-button">
+          <mat-icon>edit</mat-icon> Cím módosítása
+        </button>
+      }
+    </div>
 
-    <p class="Information-name"><mat-icon>person</mat-icon> Név:</p>
-    <p class="Information">John User</p>
+    @if (!editMode) {
+      <p class="Information-name"><mat-icon>person</mat-icon> Név:</p>
+      <p class="Information">{{ user?.address?.full_name  || 'Nincs elmentve' }}</p>
 
-    <p class="Information-name"><mat-icon>email</mat-icon> Email:</p>
-    <p class="Information">user@email.com</p>
+      <p class="Information-name"><mat-icon>email</mat-icon> Email:</p>
+      <p class="Information">{{ user?.email || 'Nem sikerült betölteni'}}</p>
 
-    <p class="Information-name"><mat-icon>phone</mat-icon> Telefonszám:</p>
-    <p class="Information">123-456-7890</p>
+      <p class="Information-name"><mat-icon>phone</mat-icon> Telefonszám:</p>
+      <p class="Information">{{ user?.address?.phone_number  || 'Nincs elmentve' }}</p>
 
-    <p class="Information-name"><mat-icon>flag</mat-icon> Ország:</p>
-    <p class="Information">Magyarország</p>
+      <p class="Information-name"><mat-icon>flag</mat-icon> Ország:</p>
+      <p class="Information">{{ user?.address?.country  || 'Nincs elmentve' }}</p>
 
-    <p class="Information-name"><mat-icon>location_on</mat-icon> Település:</p>
-    <p class="Information">Budapest</p>
+      <p class="Information-name"><mat-icon>location_on</mat-icon> Település:</p>
+      <p class="Information">{{ user?.address?.city  || 'Nincs elmentve' }}</p>
 
-    <p class="Information-name"><mat-icon>markunread</mat-icon> Irányítószám:</p>
-    <p class="Information">1051</p>
+      <p class="Information-name"><mat-icon>markunread</mat-icon> Irányítószám:</p>
+      <p class="Information">{{ user?.address?.postal_code  || 'Nincs elmentve' }}</p>
 
-    <p class="Information-name"><mat-icon>home</mat-icon> Utca:</p>
-    <p class="Information">Kossuth Lajos utca 123.</p>
+      <p class="Information-name"><mat-icon>home</mat-icon> Utca:</p>
+      <p class="Information">{{ user?.address?.street  || 'Nincs elmentve' }}</p>
 
-    <p class="Information-name"><mat-icon>home</mat-icon> Házszám:</p>
-    <p class="Information">123.</p>
+      <p class="Information-name"><mat-icon>home</mat-icon> Házszám:</p>
+      <p class="Information">{{ user?.address?.house_number  || 'Nincs elmentve' }}</p>
 
-    <p class="Information-name"><mat-icon>home</mat-icon> Lépcsőház, ajtó:</p>
-    <p class="Information">123</p>
+      <p class="Information-name"><mat-icon>home</mat-icon> Lépcsőház, ajtó:</p>
+      <p class="Information">{{ user?.address?.floor_door  || 'Nincs elmentve' }}</p>
+
+    } @else if (editMode && updatedAddress) {
+      <div class="edit-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Név</mat-label>
+          <input matInput [(ngModel)]="updatedAddress!.full_name" placeholder="Név">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Telefonszám</mat-label>
+          <input matInput [(ngModel)]="updatedAddress!.phone_number" placeholder="Telefonszám">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Ország</mat-label>
+          <input matInput [(ngModel)]="updatedAddress!.country" placeholder="Ország">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Település</mat-label>
+          <input matInput [(ngModel)]="updatedAddress!.city" placeholder="Település">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Irányítószám</mat-label>
+          <input matInput [(ngModel)]="updatedAddress!.postal_code" placeholder="Irányítószám">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Utca</mat-label>
+          <input matInput [(ngModel)]="updatedAddress!.street" placeholder="Utca">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Házszám</mat-label>
+          <input matInput [(ngModel)]="updatedAddress!.house_number" placeholder="Házszám">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Lépcsőház, ajtó</mat-label>
+          <input matInput [(ngModel)]="updatedAddress!.floor_door" placeholder="Lépcsőház, ajtó">
+        </mat-form-field>
+
+        <div class="form-buttons">
+          <button mat-button (click)="saveAddress()" class="save-button">
+            <mat-icon>save</mat-icon> Mentés
+          </button>
+          <button mat-button (click)="cancelEdit()" class="cancel-button">
+            <mat-icon>cancel</mat-icon> Mégse
+          </button>
+        </div>
+      </div>
+    }
   </div>
 </div>

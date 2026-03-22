@@ -62,6 +62,11 @@ export class Login implements OnDestroy {
           //console.log('Sikeres bejelentkezés', res);
           if (res && res.token) {
             sessionStorage.setItem('token', res.token);
+
+            if (res.user?.id != null) {
+              sessionStorage.setItem('userId', String(res.user.id));
+            }
+
             this.loginService.setLoginStatus(true);
             this.notificationService.success('Sikeres bejelentkezés!');
             

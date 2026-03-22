@@ -1,4 +1,5 @@
 export interface Address{
+    full_name: string,
     phone_number: string,
     country: string,
     postal_code: string,

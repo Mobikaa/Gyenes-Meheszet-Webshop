@@ -11,7 +11,6 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  // Get current user profile
   getUserProfile(userId: number, token: string): Observable<User> {
     return this.http.get<User>(
       `${this.apiUrl}/${userId}`,
@@ -23,7 +22,6 @@ export class ProfileService {
     );
   }
 
-  // Update user profile
   updateUserProfile(userId: number, user: Partial<User>, token: string): Observable<User> {
     return this.http.put<User>(
       `${this.apiUrl}/${userId}`,

@@ -1,5 +1,4 @@
 -- PostgreSQL database setup script
--- Execute this script in psql to create all tables and insert data
 
 -- Create enums first
 \i 'e:/Sulis/Egyetem/Szakdolgozat/Gyenes-Meheszet-Webshop/Database/order_status_enum.sql'

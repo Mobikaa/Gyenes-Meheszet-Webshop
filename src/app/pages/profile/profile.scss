@@ -52,6 +52,11 @@
   align-items: center;
 }
 
+.Information-title{
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .Information-name {
   display: flex;
   flex-direction: row;
@@ -67,4 +72,39 @@
 
 .Information-section {
   padding: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.edit-button {
+  background-color: styles.$light-hilight-color;
+  border-radius: 8px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-button {
+  background-color: styles.$succes-color;
+  color: white;
+}
+
+.cancel-button {
+  background-color: styles.$error-color;
+  color: white;
 }

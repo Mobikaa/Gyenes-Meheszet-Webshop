@@ -12,7 +12,6 @@
     <span matListItemTitle>Kosár</span>
   </a>
 
-  <!-- Bejelentkezés és Regisztráció - csak ha nincs bejelentkezve -->
   @if (!isLoggedIn) {
   <a mat-list-item routerLink="/login" routerLinkActive="active-list-item" (click)="closeMenu()">
     <mat-icon matListItemIcon>person</mat-icon>
@@ -35,7 +34,6 @@
     <span matListItemTitle>Kapcsolat</span>
   </a>
 
-  <!-- Kijelentkezés gomb - csak ha be van jelentkezve -->
   @if(isLoggedIn) {
   <a mat-list-item (click)="logout(); closeMenu()">
     <mat-icon matListItemIcon>logout</mat-icon>
