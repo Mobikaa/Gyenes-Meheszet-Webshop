@@ -25,6 +25,7 @@
                     <div class="quantity">
                         <button matButton="filled" (click)="decreaseQuantity(item)"> - </button>
                         <p>{{item.quantity}}</p>
+                        @if(item.quantity === 1){}
                         <button matButton="filled" (click)="increaseQuantity(item)"> + </button>
                     </div>
                 </div>

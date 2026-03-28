@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 
   try {
     const result = await pool.query(
-      `SELECT id, name, price, description, picture
+      `SELECT id, name, quantity, price, weight, description, picture
        FROM products
        WHERE id > $1
        ORDER BY id
@@ -31,7 +31,7 @@ router.get('/featured', async (req, res) => {
       .filter(n => !isNaN(n));
 
     const result = await pool.query(
-      `SELECT id, name, price, description, picture
+      `SELECT id, name, quantity, price, weight, description, picture
      FROM products
      WHERE id = ANY($1::int[])`,
       [ids]
@@ -71,7 +71,7 @@ router.get('/:id', async (req, res) => {
 
 
     const result = await pool.query(
-      `SELECT id, name, price, description, picture
+      `SELECT id, name, quantity, price, weight, description, picture
      FROM products
      WHERE id = $1`,
       [id]

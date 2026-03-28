@@ -24,6 +24,10 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiUrl}/featured`, { params })
   }
 
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  }
+
   getLength() {
     return this.http.get<{ rows: number }>(`${this.apiUrl}/rows`);
   }

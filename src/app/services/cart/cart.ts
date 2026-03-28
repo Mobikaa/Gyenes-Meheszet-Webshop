@@ -1,22 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Product } from '../../shared/models/product';
 import { CartSummaryItem } from '../../shared/models/cartSummaryItem';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, forkJoin, map, Observable, of, Subscription, tap } from 'rxjs';
 import { NotificationService } from '../notification/notification-service';
+import { ProductService } from '../product/product-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Cart {
+export class Cart implements OnDestroy {
   private cartContent: Product[] = [];
+  private productsFromDatabase: Product[] = [];
   private itemsSubject = new BehaviorSubject<Product[]>(this.cartContent);
+  private subscriptions: Subscription[] = [];
 
   cartContent$ = this.itemsSubject.asObservable();
 
   private STORAGE_KEY = 'cart';
 
 
-  constructor(private notificationService: NotificationService) {
+  constructor(private notificationService: NotificationService, private productService: ProductService) {
     this.loadCartFromStorage();
   }
 
@@ -28,29 +31,60 @@ export class Cart {
     return this.cartContent;
   }
 
-  //Adding an item into the cart.
   addToCart(product: Product) {
     const existing = this.cartContent.find(item => item.id === product.id);
 
     if (existing) {
-      existing.quantity = (existing.quantity ?? 1) + 1;
+      this.increaseQuantity(product.id);
+      return;
     }
-    else {
-      this.cartContent.push({ ...product, quantity: 1 });
-    }
-    
-    this.notificationService.success('Sikeresen hozzáadva a kosárhoz!', 600 );
-    this.emitCart();
+
+    this.subscriptions.push(this.productService.getProductById(product.id).subscribe({
+      next: (data) => {
+        this.cartContent.push({ ...data, quantity: 1 });
+        this.notificationService.success('Sikeresen hozzáadva a kosárhoz!', 600);
+        this.productsFromDatabase.push(data);
+        this.emitCart();
+      },
+      error: (err) => {
+        console.error(err);
+        this.notificationService.error('Hiba történt a termék lekérésekor!');
+      }
+    }));
   }
 
-  //Increasing the quality of an existing item in the cart.
   increaseQuantity(id: number) {
     const item = this.cartContent.find(item => item.id === id);
-
-    if (item) {
-      item.quantity++;
-      this.emitCart();
+    if (!item) {
+      return;
     }
+
+    const cachedProduct = this.productsFromDatabase.find(product => product.id === id);
+    if (cachedProduct) {
+      if (cachedProduct.quantity > (item.quantity ?? 0)) {
+        item.quantity = (item.quantity ?? 0) + 1;
+        this.emitCart();
+      } else {
+        this.notificationService.error('Nincs több termék készleten!');
+      }
+      return;
+    }
+
+    this.subscriptions.push(this.refreshProductsFromDatabase().subscribe({
+      next: () => {
+        const refreshedProduct = this.productsFromDatabase.find(product => product.id === id);
+        if (refreshedProduct && refreshedProduct.quantity > (item.quantity ?? 0)) {
+          item.quantity = (item.quantity ?? 0) + 1;
+          this.emitCart();
+        } else {
+          this.notificationService.error('Nincs több termék készleten!');
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        this.notificationService.error('Hiba történt a termék lekérésekor!');
+      }
+    }));
   }
 
   decreaseQuantity(id: number) {
@@ -67,24 +101,21 @@ export class Cart {
     }
   }
 
-  //Removing a single item from the cart.
   removeItem(id: number) {
     this.cartContent = this.cartContent.filter(item => item.id !== id);
+    this.productsFromDatabase = this.productsFromDatabase.filter(item => item.id !== id);
     this.emitCart();
   }
 
-  //Fully clearing the cart.
   clearCart() {
     this.cartContent = [];
     this.emitCart();
   }
 
-  //Saving the cart content into a session storage so the user can refresh the page without clearing the cart.
   private saveCartToStorage(items: Product[]) {
     sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
   }
 
-  //This loads the cart content from the session storage.
   private loadCartFromStorage() {
     const data = sessionStorage.getItem(this.STORAGE_KEY);
     if (data) {
@@ -93,13 +124,11 @@ export class Cart {
     }
   }
 
-  //Make the code cleaner by calling this function when the cart content changes.
   private emitCart() {
     this.itemsSubject.next([...this.cartContent]);
     this.saveCartToStorage([...this.cartContent]);
   }
 
-  //This method gives a list that shows the items in the cart, their quantity and their price summed.
   getCartSummary$(): Observable<CartSummaryItem[]> {
     return this.cartContent$.pipe(
       map(items =>
@@ -113,12 +142,31 @@ export class Cart {
     );
   }
 
-  //This is for the summarize component to show the full price of the order
   getTotalPrice$() {
     return this.cartContent$.pipe(
       map(items =>
         items.reduce((sum, item) => sum + item.quantity * item.price, 0)
       )
     );
+  }
+
+  private refreshProductsFromDatabase(): Observable<Product[]> {
+    const idsToFetch = this.cartContent
+      .map(item => item.id)
+      .filter(id => !this.productsFromDatabase.some(product => product.id === id));
+
+    if (idsToFetch.length === 0) {
+      return of(this.productsFromDatabase);
+    }
+
+    return forkJoin(idsToFetch.map(id => this.productService.getProductById(id))).pipe(
+      tap(products => {
+        this.productsFromDatabase = [...this.productsFromDatabase, ...products];
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
