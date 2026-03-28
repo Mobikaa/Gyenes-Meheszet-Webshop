@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
         if (token && isLoggedIn) {
             return true;
         } else {
-            this.notificationService.warning('Nincs bejelentkezve! Kérem, jelentkezzen be a folytatáshoz.');
+            this.notificationService.error('Nincs bejelentkezve! Kérem, jelentkezzen be a folytatáshoz.');
             this.router.navigate(['/login']);
             return false;
         }
