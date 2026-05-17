@@ -9,11 +9,7 @@ export const routes: Routes = [
     {
         path: 'products',
         loadComponent: () => import('./pages/products/products').then(m => m.Products)
-    },
-    {
-        path: 'products/:id',
-        loadComponent: () => import('./pages/product-detail/product-detail').then(m => m.ProductDetail)
-    },
+    }, 
     {
         path: 'login',
         loadComponent: () => import('./pages/login/login').then(m => m.Login)
@@ -38,6 +34,10 @@ export const routes: Routes = [
     {
         path: 'checkout',
         loadComponent: () => import('./pages/checkout/checkout').then(m => m.Checkout)
+    },
+    {
+        path: 'orderstatus',
+        loadComponent: () => import('./pages/orderstatus/orderstatus').then(m => m.Orderstatus)
     },
 
     { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -8,12 +8,22 @@
             <p class="price">{{item.total | numberSpacer}} Ft</p>
         </div>
         }
+        @if(showExtraItems) {
+        @for(item of extraItems; track item.id){
+        <div class="item">
+            <p class="name">{{item.name}} x {{item.quantity}}</p>
+            <p class="price">{{item.total | numberSpacer}} Ft</p>
+        </div>
+        }
+        }
         <hr>
         <div class="item">
             <p class="total-text">Teljes összeg:</p>
-            <p class="total-price">{{ (total$ | async) ?? 0 | numberSpacer}} Ft</p>
+            <p class="total-price">{{ (((total$ | async) ?? 0) + extraTotal) | numberSpacer}} Ft</p>
         </div>
 
-        <button matButton="filled"> Tovább a pénztárhoz </button>
+        @if(!isCheckout) {
+            <button matButton="filled" (click)="navigateToCheckout()"> Tovább a pénztárhoz </button>
+        }
     </div>
 </div>

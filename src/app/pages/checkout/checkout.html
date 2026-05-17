@@ -1,88 +1,172 @@
 <div class="content">
-    <mat-stepper linear="true" class = "stepper">
-      <div class="step-section">
-        <mat-step [stepControl]="firstFormGroup" label="Személyes adatok">
-          <form [formGroup]="firstFormGroup" class = "form">
-            <mat-form-field class="form-field">
-              <mat-label>Név</mat-label>
-              <input
-                matInput
-                placeholder="Keresztnév és vezetéknév"
-                formControlName="nameCtrl"
-                required
-              />
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Email</mat-label>
-              <input matInput placeholder="Email cím" formControlName="emailCtrl" required />
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Telefonszám</mat-label>
-              <input matInput placeholder="Telefonszám" formControlName="phoneCtrl" required />
-            </mat-form-field>
-            <div>
-              <button matButton matStepperNext class = "nextbtn">Tovább</button>
-            </div>
-          </form>
-        </mat-step>
-      </div>
-      <div class="step-section">
-        <mat-step [stepControl]="secondFormGroup" label="Szállítási adatok">
-          <form [formGroup]="secondFormGroup" class = "form">
-            <mat-form-field class="form-field">
-              <mat-label>Ország</mat-label>
-              <input matInput formControlName="countryCtrl" placeholder="Ország" required />
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Település</mat-label>
-              <input matInput formControlName="cityCtrl" placeholder="Település" required />
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Irányítószám</mat-label>
-              <input matInput formControlName="postalCtrl" placeholder="Irányítószám" required />
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Utca</mat-label>
-              <input matInput formControlName="streetCtrl" placeholder="Utca" required />
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Házszám</mat-label>
-              <input matInput formControlName="houseNumberCtrl" placeholder="Házszám" required />
-            </mat-form-field>
-            <mat-form-field class="form-field">
-              <mat-label>Lépcsőház, ajtó</mat-label>
-              <input matInput formControlName="floorDoorCtrl" placeholder="Lépcsőház, ajtó" />
-            </mat-form-field>
-            <div>
-              <button matButton matStepperPrevious>Vissza</button>
-              <button matButton matStepperNext class = "nextbtn">Tovább</button>
-            </div>
-          </form>
-        </mat-step>
-      </div>
-      <div class="step-section">
-        <mat-step label="Véglegesítés">
-          <p class = "form">A vásárlás adatai:</p>
-          <p>Név: {{ firstFormGroup.get('nameCtrl')?.value }}</p>
-          <p>Email: {{ firstFormGroup.get('emailCtrl')?.value }}</p>
-          <p>Telefonszám: {{ firstFormGroup.get('phoneCtrl')?.value }}</p>
-          <p>Ország: {{ secondFormGroup.get('countryCtrl')?.value }}</p>
-          <p>Település: {{ secondFormGroup.get('cityCtrl')?.value }}</p>
-          <p>Irányítószám: {{ secondFormGroup.get('postalCtrl')?.value }}</p>
-          <p>Utca: {{ secondFormGroup.get('streetCtrl')?.value }}</p>
-          <p>Házszám: {{ secondFormGroup.get('houseNumberCtrl')?.value }}</p>
-          @if (secondFormGroup.get('floorDoorCtrl')?.value) {
-            <p>Lépcsőház, ajtó: {{ secondFormGroup.get('floorDoorCtrl')?.value }}</p>
-          }
-    
+  <mat-stepper linear="true" class="stepper">
+    <div class="step-section">
+      <mat-step [stepControl]="personalFormGroup" label="Személyes adatok">
+        <form [formGroup]="personalFormGroup" class="form">
+          <mat-form-field class="form-field">
+            <mat-label>Név</mat-label>
+            <input matInput placeholder="Keresztnév és vezetéknév" formControlName="nameCtrl" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email cím" formControlName="emailCtrl" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Telefonszám</mat-label>
+            <input matInput placeholder="Telefonszám" formControlName="phoneCtrl" required />
+          </mat-form-field>
+          <div>
+            <button matButton matStepperNext class="nextbtn">Tovább</button>
+          </div>
+        </form>
+      </mat-step>
+    </div>
+    <div class="step-section">
+      <mat-step [stepControl]="shippingFormGroup" label="Szállítási adatok">
+        <form [formGroup]="shippingFormGroup" class="form">
+          <mat-form-field class="form-field">
+            <mat-label>Ország</mat-label>
+            <input matInput formControlName="countryCtrl" placeholder="Ország" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Település</mat-label>
+            <input matInput formControlName="cityCtrl" placeholder="Település" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Irányítószám</mat-label>
+            <input matInput formControlName="postalCtrl" placeholder="Irányítószám" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Utca</mat-label>
+            <input matInput formControlName="streetCtrl" placeholder="Utca" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Házszám</mat-label>
+            <input matInput formControlName="houseNumberCtrl" placeholder="Házszám" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Lépcsőház, ajtó</mat-label>
+            <input matInput formControlName="floorDoorCtrl" placeholder="Lépcsőház, ajtó" />
+          </mat-form-field>
+          <mat-checkbox formControlName="differentBilling">Eltérő számlázási adatok</mat-checkbox>
+
           <div>
             <button matButton matStepperPrevious>Vissza</button>
+            <button matButton matStepperNext class="nextbtn">Tovább</button>
           </div>
-        </mat-step>
-      </div>
-    </mat-stepper>
+        </form>
+      </mat-step>
+    </div>
+    @if(shippingFormGroup.get('differentBilling')?.value) {
+    <div class="step-section">
+      <mat-step [stepControl]="billingFormGroup" label="Számlázási adatok">
+        <form [formGroup]="billingFormGroup" class="form">
+          <mat-form-field class="form-field">
+            <mat-label>Számlázási név</mat-label>
+            <input matInput formControlName="billingNameCtrl" placeholder="Keresztnév és vezetéknév" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Számlázási telefonszám</mat-label>
+            <input matInput formControlName="billingPhoneCtrl" placeholder="Telefonszám" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Számlázási ország</mat-label>
+            <input matInput formControlName="billingCountryCtrl" placeholder="Ország" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Számlázási település</mat-label>
+            <input matInput formControlName="billingCityCtrl" placeholder="Település" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Számlázási irányítószám</mat-label>
+            <input matInput formControlName="billingPostalCtrl" placeholder="Irányítószám" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Számlázási utca</mat-label>
+            <input matInput formControlName="billingStreetCtrl" placeholder="Utca" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Számlázási házszám</mat-label>
+            <input matInput formControlName="billingHouseNumberCtrl" placeholder="Házszám" required />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Számlázási lépcsőház, ajtó</mat-label>
+            <input matInput formControlName="billingFloorDoorCtrl" placeholder="Lépcsőház, ajtó" />
+          </mat-form-field>
+          <div>
+            <button matButton matStepperPrevious>Vissza</button>
+            <button matButton matStepperNext class="nextbtn">Tovább</button>
+          </div>
+        </form>
+      </mat-step>
+    </div>
+    }
 
-     <div class="summarize-component">
-            <app-summarize></app-summarize>
+    <div class="step-section">
+      <mat-step label="Fizetés">
+        <form [formGroup]="paymentMethodCtrl" class="form">
+          <div class="checkbox-section">
+            <mat-label>Fizetési mód:</mat-label> <br>
+            <mat-radio-group formControlName="paymentMethod">
+              <mat-radio-button value="utanvetel">Utánvétel (+500 Ft)</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </form>
+
+        <form [formGroup]="shippingMethodCtrl" class="form">
+          <div class="checkbox-section">
+            <mat-label>Szállítási mód:</mat-label> <br>
+            <mat-radio-group formControlName="shippingMethod">
+              <mat-radio-button value="standard">Házhozszállítás (MPL) (+1200 Ft)</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div>
+            <button matButton matStepperPrevious>Vissza</button>
+            <button type="button" matButton matStepperNext class="nextbtn">Tovább</button>
+          </div>
+        </form>
+      </mat-step>
+    </div>
+
+    <div class="step-section">
+      <mat-step label="Véglegesítés">
+        <p class="form sum-title">A vásárlás adatai:</p>
+        <p class="sum-data">Név: {{ personalFormGroup.get('nameCtrl')?.value }}</p>
+        <p class="sum-data">Email: {{ personalFormGroup.get('emailCtrl')?.value }}</p>
+        <p class="sum-data">Telefonszám: {{ personalFormGroup.get('phoneCtrl')?.value }}</p>
+        <p class="sum-data">Ország: {{ shippingFormGroup.get('countryCtrl')?.value }}</p>
+        <p class="sum-data">Település: {{ shippingFormGroup.get('cityCtrl')?.value }}</p>
+        <p class="sum-data">Irányítószám: {{ shippingFormGroup.get('postalCtrl')?.value }}</p>
+        <p class="sum-data">Utca: {{ shippingFormGroup.get('streetCtrl')?.value }}</p>
+        <p class="sum-data">Házszám: {{ shippingFormGroup.get('houseNumberCtrl')?.value }}</p>
+
+        @if (shippingFormGroup.get('floorDoorCtrl')?.value) {
+        <p class="sum-data">Lépcsőház, ajtó: {{ shippingFormGroup.get('floorDoorCtrl')?.value }}</p>
+        }
+
+        @if(!shippingFormGroup.get('differentBilling')?.value){
+        <p class="sum-title">Számlázási adatok megegyeznek a szállítási adatokkal.</p>
+        }
+
+        @if(shippingFormGroup.get('differentBilling')?.value) {
+        <p class="sum-title">Számlázási adatok:</p>
+        <p class="sum-data">Számlázási név: {{ billingFormGroup.get('billingNameCtrl')?.value }}</p>
+        <p class="sum-data">Számlázási ország: {{ billingFormGroup.get('billingCountryCtrl')?.value }}</p>
+        <p class="sum-data">Számlázási település: {{ billingFormGroup.get('billingCityCtrl')?.value }}</p>
+        <p class="sum-data">Számlázási irányítószám: {{ billingFormGroup.get('billingPostalCtrl')?.value }}</p>
+        <p class="sum-data">Számlázási utca: {{ billingFormGroup.get('billingStreetCtrl')?.value }}</p>
+        <p class="sum-data">Számlázási házszám: {{ billingFormGroup.get('billingHouseNumberCtrl')?.value }}</p>
+        }
+
+        <div>
+          <button matButton matStepperPrevious>Vissza</button>
+          <button matButton="filled" class="nextbtn primary" (click)="finalizeOrder()">Véglegesítés</button>
         </div>
+      </mat-step>
+    </div>
+  </mat-stepper>
+
+  <div class="summarize-component">
+    <app-summarize [extraItems]="checkoutFeeItems" [showExtraItems]="showCheckoutFees"></app-summarize>
+  </div>
 </div>

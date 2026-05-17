@@ -5,7 +5,9 @@
 }
 
 .active-list-item{
-    background-color: black;
-    font-weight: bold;
-    color: red;
+    background-color: styles.$primary-color;
+
+    span{
+        color: white;
+    }
 }

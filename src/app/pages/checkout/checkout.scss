@@ -46,3 +46,17 @@
 .summarize-component {
   padding: 20px 0;
 }
+
+.primary {
+  background-color: styles.$primary-color;
+  color: white;
+}
+
+.sum-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sum-data {
+  margin: auto;
+}

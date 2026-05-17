@@ -112,6 +112,10 @@ export class Cart implements OnDestroy {
     this.emitCart();
   }
 
+  clearProductCache() {
+    this.productsFromDatabase = [];
+  }
+
   private saveCartToStorage(items: Product[]) {
     sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
   }

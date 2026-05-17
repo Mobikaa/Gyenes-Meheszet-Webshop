@@ -1,5 +1,6 @@
 CREATE TABLE order_shipping_address (
     order_id INT PRIMARY KEY REFERENCES orders(id) ON DELETE CASCADE,
+    full_name TEXT NOT NULL,
     phone_number TEXT NOT NULL,
     country TEXT NOT NULL,
     postal_code TEXT NOT NULL,

@@ -93,15 +93,55 @@
   max-width: 400px;
 }
 
-.form-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
+.orders-section {
+  padding: 20px;
+  border-top: 1px solid #eee;
 
-.save-button {
-  background-color: styles.$succes-color;
-  color: white;
+  &.empty-state {
+    text-align: center;
+    color: styles.$secondary-text-color;
+  }
+
+  .orders-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 100%;
+
+    th,
+    td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f5f5f5;
+      font-weight: 700;
+    }
+
+    tr:hover {
+      background-color: #fafafa;
+    }
+
+    .order-items-row {
+      background-color: #fcfcfc;
+    }
+
+    .order-items-label {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .order-items-list {
+      margin: 0;
+      padding-left: 18px;
+      list-style-type: disc;
+    }
+  }
 }
 
 .cancel-button {

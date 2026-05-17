@@ -7,9 +7,9 @@
     <mat-icon matListItemIcon>sell</mat-icon>
     <span matListItemTitle>Termékek</span>
   </a>
-  <a mat-list-item routerLink="/cart" routerLinkActive="active-list-item" (click)="closeMenu()">
-    <mat-icon matListItemIcon>shopping_cart</mat-icon>
-    <span matListItemTitle>Kosár</span>
+  <a mat-list-item routerLink="/orderstatus" routerLinkActive="active-list-item" (click)="closeMenu()">
+    <mat-icon matListItemIcon>ssid_chart</mat-icon>
+    <span matListItemTitle>Rendelésem</span>
   </a>
 
   @if (!isLoggedIn) {
@@ -23,15 +23,19 @@
   </a>
   }
 
+  <a mat-list-item routerLink="/contact" routerLinkActive="active-list-item" (click)="closeMenu()">
+    <mat-icon matListItemIcon>contact_page</mat-icon>
+    <span matListItemTitle>Kapcsolat</span>
+  </a>
+  
+  <a mat-list-item routerLink="/cart" routerLinkActive="active-list-item" (click)="closeMenu()">
+    <mat-icon matListItemIcon>shopping_cart</mat-icon>
+    <span matListItemTitle>Kosár</span>
+  </a>
 
   <a mat-list-item routerLink="/profile" routerLinkActive="active-list-item" (click)="closeMenu()">
     <mat-icon matListItemIcon>badge</mat-icon>
     <span matListItemTitle>Profil</span>
-  </a>
-
-  <a mat-list-item routerLink="/contact" routerLinkActive="active-list-item" (click)="closeMenu()">
-    <mat-icon matListItemIcon>contact_page</mat-icon>
-    <span matListItemTitle>Kapcsolat</span>
   </a>
 
   @if(isLoggedIn) {

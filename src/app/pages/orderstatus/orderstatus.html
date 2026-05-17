@@ -1,0 +1,51 @@
+<div class="page-container">
+  <div class="header">
+    <h1>Rendelés státusza</h1>
+    <p>Ellenőrizze a rendelése státuszát.</p>
+  </div>
+
+  <div class="content">
+    <form class = "search-section" [formGroup]="orderForm" (ngSubmit)="searchOrder()">
+      <mat-form-field class="form-field">
+        <mat-label>Rendelés azonosító</mat-label>
+        <input matInput formControlName="orderId" placeholder="Adja meg a rendelés azonosítóját" type="number"
+          min="0" />
+      </mat-form-field>
+
+      <button matButton="filled" type="submit" [disabled]="loading">
+        @if(loading) {
+        Keresés...
+        } @else {
+        Keresés
+        }
+      </button>
+    </form>
+
+
+    @if(orderStatus) {
+    <div class="status-section">
+      <h2>Rendelés Adatai</h2>
+      <table class="status-table">
+        <tr>
+          <td><strong>Rendelés azonosító:</strong></td>
+          <td>{{ orderStatus.id }}</td>
+        </tr>
+        <tr>
+          <td><strong>Státusz:</strong></td>
+          <td class="status-badge" [ngClass]="'status-' + orderStatus.status">
+            {{ orderStatus.status }}
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Rendelés Dátuma:</strong></td>
+          <td>{{ orderStatus.order_date | date: 'yyyy.MM.dd HH:mm' }}</td>
+        </tr>
+        <tr>
+          <td><strong>Teljes Összeg:</strong></td>
+          <td>{{ orderStatus.total }} Ft</td>
+        </tr>
+      </table>
+    </div>
+    }
+  </div>
+</div>

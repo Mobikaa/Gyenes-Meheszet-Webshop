@@ -141,14 +141,14 @@ router.put('/:id', async (req, res) => {
             `,
             [
                 userId,
-                full_name,
-                phone_number,
-                country,
-                postal_code,
-                city,
-                street,
-                house_number,
-                floor_door,
+                full_name || null,
+                phone_number || null,
+                country || null,
+                postal_code || null,
+                city || null,
+                street || null,
+                house_number || null,
+                floor_door || null,
             ]
         );
 

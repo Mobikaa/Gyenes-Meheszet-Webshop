@@ -101,4 +101,50 @@
       </div>
     }
   </div>
+
+  <h2>Korábbi rendelések</h2>
+
+  @if(orders.length > 0) {
+    <div class="orders-section">
+      <div class="section-header">
+        <p class="Information-title">Korábbi rendelések</p>
+      </div>
+      <div class="orders-table-wrapper">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Rendelés azonosító</th>
+              <th>Dátum</th>
+              <th>Összeg</th>
+              <th>Státusz</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(order of orders; track order.id){
+              <tr>
+                <td>{{order.id}}</td>
+                <td>{{order.order_date | date:'yyyy.MM.dd HH:mm'}}</td>
+                <td>{{order.total | numberSpacer}} Ft</td>
+                <td>{{order.status}}</td>
+              </tr>
+              <tr class="order-items-row">
+                <td colspan="4">
+                  <div class="order-items-label">Termékek:</div>
+                  <ul class="order-items-list">
+                    @for(item of order.items; track item.product_id){
+                      <li>{{ item.product_name }} x {{ item.quantity }} ({{ item.unit_price_at_order | numberSpacer}} Ft)</li>
+                    }
+                  </ul>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  } @else {
+    <div class="orders-section empty-state">
+      <p>Korábbi rendelés nem található.</p>
+    </div>
+  }
 </div>

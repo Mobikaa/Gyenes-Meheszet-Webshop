@@ -1,6 +1,7 @@
 CREATE TABLE order_billing_address (
     order_id INT PRIMARY KEY REFERENCES orders(id) ON DELETE CASCADE,
     same_as_shipping BOOLEAN NOT NULL,
+    full_name TEXT,
     phone_number TEXT,
     country TEXT,
     postal_code TEXT,

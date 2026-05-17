@@ -3,11 +3,13 @@ import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormField } from '@angular/material/form-field';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, } from '@angular/forms';
 import { LogoutService } from '../../services/logout/logout-service';
 import { ProfileService } from '../../services/profile/profile-service';
 import { User } from '../../shared/models/user';
 import { Subscription } from 'rxjs';
+import { NumberSpacerPipe } from "../../pipes/number-spacer-pipe";
 
 @Component({
   selector: 'app-profile',
@@ -16,8 +18,11 @@ import { Subscription } from 'rxjs';
     MatButton,
     MatInputModule,
     MatFormField,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    CommonModule,
+    DatePipe,
+    NumberSpacerPipe
+],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
@@ -37,6 +42,8 @@ export class Profile implements OnInit, OnDestroy {
     house_number: new FormControl(),
     floor_door: new FormControl(),
   });
+
+  orders: Array<{ id: number; status: string; order_date: string; total: number; items: Array<{ product_id: number; product_name: string; quantity: number; unit_price_at_order: number }> }> = [];
 
   constructor(
     private logoutService: LogoutService,
@@ -62,6 +69,17 @@ export class Profile implements OnInit, OnDestroy {
           console.error('Failed to load user profile', err);
         }
       }));
+
+    this.subscriptions.push(
+      this.profileService.getUserOrders(token).subscribe({
+        next: (orders) => {
+          this.orders = orders;
+        },
+        error: (err) => {
+          console.error('Failed to load user orders', err);
+        }
+      })
+    );
   }
 
   startEdit() {

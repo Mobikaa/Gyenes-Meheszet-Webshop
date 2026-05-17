@@ -33,4 +33,15 @@ export class ProfileService {
       }
     );
   }
+
+  getUserOrders(token: string): Observable<any[]> {
+    return this.http.get<any[]>(
+      'http://localhost:3000/api/profile/orders',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
 }
